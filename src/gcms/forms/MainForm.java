@@ -39,6 +39,14 @@ public class MainForm extends javax.swing.JFrame {
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();
+        mainMenuBar = new javax.swing.JMenuBar();
+        fileMenu = new javax.swing.JMenu();
+        exitMenuItem = new javax.swing.JMenuItem();
+        dataMenu = new javax.swing.JMenu();
+        employeesMenuItem = new javax.swing.JMenuItem();
+        membersMenuItem = new javax.swing.JMenuItem();
+        helpMenu = new javax.swing.JMenu();
+        aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,8 +58,34 @@ public class MainForm extends javax.swing.JFrame {
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 588, Short.MAX_VALUE)
+            .addGap(0, 565, Short.MAX_VALUE)
         );
+
+        fileMenu.setText("File");
+
+        exitMenuItem.setText("Exit");
+        fileMenu.add(exitMenuItem);
+
+        mainMenuBar.add(fileMenu);
+
+        dataMenu.setText("Data");
+
+        employeesMenuItem.setText("Employees...");
+        dataMenu.add(employeesMenuItem);
+
+        membersMenuItem.setText("Members...");
+        dataMenu.add(membersMenuItem);
+
+        mainMenuBar.add(dataMenu);
+
+        helpMenu.setText("Help");
+
+        aboutMenuItem.setText("About");
+        helpMenu.add(aboutMenuItem);
+
+        mainMenuBar.add(helpMenu);
+
+        setJMenuBar(mainMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,6 +143,14 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem aboutMenuItem;
+    private javax.swing.JMenu dataMenu;
+    private javax.swing.JMenuItem employeesMenuItem;
+    private javax.swing.JMenuItem exitMenuItem;
+    private javax.swing.JMenu fileMenu;
+    private javax.swing.JMenu helpMenu;
+    private javax.swing.JMenuBar mainMenuBar;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JMenuItem membersMenuItem;
     // End of variables declaration//GEN-END:variables
 }
