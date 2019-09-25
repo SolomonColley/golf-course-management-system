@@ -38,9 +38,32 @@ public class MainForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        EmployeeForm = new javax.swing.JFrame();
+        EmployeesForm = new javax.swing.JFrame();
         employeeFormPanel = new javax.swing.JPanel();
-        MemberForm = new javax.swing.JFrame();
+        empNameLabel = new javax.swing.JLabel();
+        empFNameTextField = new javax.swing.JTextField();
+        empLNameTextField = new javax.swing.JTextField();
+        empAddressLabel = new javax.swing.JLabel();
+        empStreetTextField = new javax.swing.JTextField();
+        empCityTextField = new javax.swing.JTextField();
+        empZipTextField = new javax.swing.JTextField();
+        empStateSpinner = new javax.swing.JSpinner();
+        empEmailLabel = new javax.swing.JLabel();
+        empEmailTextField = new javax.swing.JTextField();
+        empPhoneLabel = new javax.swing.JLabel();
+        empPhoneTextField = new javax.swing.JTextField();
+        empPayRateLabel = new javax.swing.JLabel();
+        empPayRateTextField = new javax.swing.JTextField();
+        empIDLabel = new javax.swing.JLabel();
+        empIDTextField = new javax.swing.JTextField();
+        empNewBtn = new javax.swing.JButton();
+        empUpdateBtn = new javax.swing.JButton();
+        empDeleteBtn = new javax.swing.JButton();
+        empFirstBtn = new javax.swing.JButton();
+        empPreviousBtn = new javax.swing.JButton();
+        empNextBtn = new javax.swing.JButton();
+        empLastBtn = new javax.swing.JButton();
+        MembersForm = new javax.swing.JFrame();
         memberFormPanel = new javax.swing.JPanel();
         AboutForm = new javax.swing.JFrame();
         aboutFormPanel = new javax.swing.JPanel();
@@ -54,39 +77,184 @@ public class MainForm extends javax.swing.JFrame {
         helpMenu = new javax.swing.JMenu();
         aboutMenuItem = new javax.swing.JMenuItem();
 
-        EmployeeForm.setTitle("Employee Data");
-        EmployeeForm.setSize(new java.awt.Dimension(800, 600));
+        EmployeesForm.setTitle("Employee Data");
+        EmployeesForm.setSize(new java.awt.Dimension(595, 325));
+
+        empNameLabel.setText("Employee name");
+
+        empFNameTextField.setToolTipText("Last name");
+
+        empLNameTextField.setToolTipText("First name");
+
+        empAddressLabel.setText("Employee address");
+
+        empStreetTextField.setToolTipText("Street");
+
+        empCityTextField.setToolTipText("City");
+
+        empZipTextField.setToolTipText("Zip");
+
+        empStateSpinner.setModel(new javax.swing.SpinnerListModel(new String[] {"AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"}));
+        empStateSpinner.setToolTipText("State");
+
+        empEmailLabel.setText("Employee email");
+
+        empEmailTextField.setToolTipText("Email address");
+
+        empPhoneLabel.setText("Employee phone");
+
+        empPhoneTextField.setToolTipText("Phone number");
+
+        empPayRateLabel.setText("Employee pay rate");
+
+        empPayRateTextField.setToolTipText("Pay rate");
+
+        empIDLabel.setText("Employee ID");
+
+        empIDTextField.setToolTipText("Employee ID");
+        empIDTextField.setEnabled(false);
+
+        empNewBtn.setText("New...");
+
+        empUpdateBtn.setText("Update");
+
+        empDeleteBtn.setText("Delete");
+        empDeleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                empDeleteBtnActionPerformed(evt);
+            }
+        });
+
+        empFirstBtn.setText("First");
+
+        empPreviousBtn.setText("Previous");
+
+        empNextBtn.setText("Next");
+
+        empLastBtn.setText("Last");
 
         javax.swing.GroupLayout employeeFormPanelLayout = new javax.swing.GroupLayout(employeeFormPanel);
         employeeFormPanel.setLayout(employeeFormPanelLayout);
         employeeFormPanelLayout.setHorizontalGroup(
             employeeFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 788, Short.MAX_VALUE)
+            .addGroup(employeeFormPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(employeeFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(employeeFormPanelLayout.createSequentialGroup()
+                        .addGroup(employeeFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(employeeFormPanelLayout.createSequentialGroup()
+                                .addGroup(employeeFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(empAddressLabel)
+                                    .addComponent(empEmailLabel))
+                                .addGap(18, 18, 18)
+                                .addGroup(employeeFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(empEmailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(employeeFormPanelLayout.createSequentialGroup()
+                                        .addComponent(empStreetTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(empCityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(empPhoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(empPayRateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, employeeFormPanelLayout.createSequentialGroup()
+                                .addGroup(employeeFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(empNameLabel)
+                                    .addComponent(empIDLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(employeeFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(empIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(employeeFormPanelLayout.createSequentialGroup()
+                                        .addComponent(empFNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(empLNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(18, 18, 18)
+                        .addComponent(empStateSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(empZipTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(empPhoneLabel)
+                    .addComponent(empPayRateLabel)
+                    .addGroup(employeeFormPanelLayout.createSequentialGroup()
+                        .addComponent(empNewBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(empUpdateBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(empDeleteBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(empFirstBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(empPreviousBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(empNextBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(empLastBtn)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        employeeFormPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {empCityTextField, empEmailTextField, empLNameTextField, empPayRateTextField, empPhoneTextField, empStreetTextField});
+
+        employeeFormPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {empFNameTextField, empIDTextField});
+
         employeeFormPanelLayout.setVerticalGroup(
             employeeFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 588, Short.MAX_VALUE)
+            .addGroup(employeeFormPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(employeeFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(empIDLabel)
+                    .addComponent(empIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(employeeFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(empNameLabel)
+                    .addComponent(empLNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(empFNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(employeeFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(empAddressLabel)
+                    .addComponent(empStreetTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(empCityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(empZipTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(empStateSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(employeeFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(empEmailLabel)
+                    .addComponent(empEmailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(employeeFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(empPhoneLabel)
+                    .addComponent(empPhoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(employeeFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(empPayRateLabel)
+                    .addComponent(empPayRateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(employeeFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(empNewBtn)
+                    .addComponent(empUpdateBtn)
+                    .addComponent(empDeleteBtn)
+                    .addComponent(empFirstBtn)
+                    .addComponent(empPreviousBtn)
+                    .addComponent(empNextBtn)
+                    .addComponent(empLastBtn))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout EmployeeFormLayout = new javax.swing.GroupLayout(EmployeeForm.getContentPane());
-        EmployeeForm.getContentPane().setLayout(EmployeeFormLayout);
-        EmployeeFormLayout.setHorizontalGroup(
-            EmployeeFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EmployeeFormLayout.createSequentialGroup()
+        javax.swing.GroupLayout EmployeesFormLayout = new javax.swing.GroupLayout(EmployeesForm.getContentPane());
+        EmployeesForm.getContentPane().setLayout(EmployeesFormLayout);
+        EmployeesFormLayout.setHorizontalGroup(
+            EmployeesFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EmployeesFormLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(employeeFormPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(employeeFormPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        EmployeeFormLayout.setVerticalGroup(
-            EmployeeFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(EmployeeFormLayout.createSequentialGroup()
+        EmployeesFormLayout.setVerticalGroup(
+            EmployeesFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EmployeesFormLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(employeeFormPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(employeeFormPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        MemberForm.setTitle("Member Data");
-        MemberForm.setSize(new java.awt.Dimension(800, 600));
+        MembersForm.setTitle("Member Data");
+        MembersForm.setSize(new java.awt.Dimension(800, 600));
 
         javax.swing.GroupLayout memberFormPanelLayout = new javax.swing.GroupLayout(memberFormPanel);
         memberFormPanel.setLayout(memberFormPanelLayout);
@@ -99,18 +267,18 @@ public class MainForm extends javax.swing.JFrame {
             .addGap(0, 588, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout MemberFormLayout = new javax.swing.GroupLayout(MemberForm.getContentPane());
-        MemberForm.getContentPane().setLayout(MemberFormLayout);
-        MemberFormLayout.setHorizontalGroup(
-            MemberFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MemberFormLayout.createSequentialGroup()
+        javax.swing.GroupLayout MembersFormLayout = new javax.swing.GroupLayout(MembersForm.getContentPane());
+        MembersForm.getContentPane().setLayout(MembersFormLayout);
+        MembersFormLayout.setHorizontalGroup(
+            MembersFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MembersFormLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(memberFormPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        MemberFormLayout.setVerticalGroup(
-            MemberFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MemberFormLayout.createSequentialGroup()
+        MembersFormLayout.setVerticalGroup(
+            MembersFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MembersFormLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(memberFormPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -226,11 +394,11 @@ public class MainForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void employeeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeMenuItemActionPerformed
-        EmployeeForm.setVisible(true);
+        EmployeesForm.setVisible(true);
     }//GEN-LAST:event_employeeMenuItemActionPerformed
 
     private void memberMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberMenuItemActionPerformed
-        MemberForm.setVisible(true);
+        MembersForm.setVisible(true);
     }//GEN-LAST:event_memberMenuItemActionPerformed
 
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
@@ -240,6 +408,10 @@ public class MainForm extends javax.swing.JFrame {
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
         AboutForm.setVisible(true);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
+
+    private void empDeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empDeleteBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_empDeleteBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -278,11 +450,34 @@ public class MainForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFrame AboutForm;
-    private javax.swing.JFrame EmployeeForm;
-    private javax.swing.JFrame MemberForm;
+    private javax.swing.JFrame EmployeesForm;
+    private javax.swing.JFrame MembersForm;
     private javax.swing.JPanel aboutFormPanel;
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JMenu dataMenu;
+    private javax.swing.JLabel empAddressLabel;
+    private javax.swing.JTextField empCityTextField;
+    private javax.swing.JButton empDeleteBtn;
+    private javax.swing.JLabel empEmailLabel;
+    private javax.swing.JTextField empEmailTextField;
+    private javax.swing.JTextField empFNameTextField;
+    private javax.swing.JButton empFirstBtn;
+    private javax.swing.JLabel empIDLabel;
+    private javax.swing.JTextField empIDTextField;
+    private javax.swing.JTextField empLNameTextField;
+    private javax.swing.JButton empLastBtn;
+    private javax.swing.JLabel empNameLabel;
+    private javax.swing.JButton empNewBtn;
+    private javax.swing.JButton empNextBtn;
+    private javax.swing.JLabel empPayRateLabel;
+    private javax.swing.JTextField empPayRateTextField;
+    private javax.swing.JLabel empPhoneLabel;
+    private javax.swing.JTextField empPhoneTextField;
+    private javax.swing.JButton empPreviousBtn;
+    private javax.swing.JSpinner empStateSpinner;
+    private javax.swing.JTextField empStreetTextField;
+    private javax.swing.JButton empUpdateBtn;
+    private javax.swing.JTextField empZipTextField;
     private javax.swing.JPanel employeeFormPanel;
     private javax.swing.JMenuItem employeeMenuItem;
     private javax.swing.JMenuItem exitMenuItem;
