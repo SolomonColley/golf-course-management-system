@@ -38,49 +38,167 @@ public class MainForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mainPanel = new javax.swing.JPanel();
+        EmployeeForm = new javax.swing.JFrame();
+        employeeFormPanel = new javax.swing.JPanel();
+        MemberForm = new javax.swing.JFrame();
+        memberFormPanel = new javax.swing.JPanel();
+        AboutForm = new javax.swing.JFrame();
+        aboutFormPanel = new javax.swing.JPanel();
+        mainFormPanel = new javax.swing.JPanel();
         mainMenuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         exitMenuItem = new javax.swing.JMenuItem();
         dataMenu = new javax.swing.JMenu();
-        employeesMenuItem = new javax.swing.JMenuItem();
-        membersMenuItem = new javax.swing.JMenuItem();
+        employeeMenuItem = new javax.swing.JMenuItem();
+        memberMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         aboutMenuItem = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        EmployeeForm.setTitle("Employee Data");
+        EmployeeForm.setSize(new java.awt.Dimension(800, 600));
 
-        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
-        mainPanel.setLayout(mainPanelLayout);
-        mainPanelLayout.setHorizontalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout employeeFormPanelLayout = new javax.swing.GroupLayout(employeeFormPanel);
+        employeeFormPanel.setLayout(employeeFormPanelLayout);
+        employeeFormPanelLayout.setHorizontalGroup(
+            employeeFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 788, Short.MAX_VALUE)
         );
-        mainPanelLayout.setVerticalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        employeeFormPanelLayout.setVerticalGroup(
+            employeeFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 588, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout EmployeeFormLayout = new javax.swing.GroupLayout(EmployeeForm.getContentPane());
+        EmployeeForm.getContentPane().setLayout(EmployeeFormLayout);
+        EmployeeFormLayout.setHorizontalGroup(
+            EmployeeFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EmployeeFormLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(employeeFormPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        EmployeeFormLayout.setVerticalGroup(
+            EmployeeFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(EmployeeFormLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(employeeFormPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        MemberForm.setTitle("Member Data");
+        MemberForm.setSize(new java.awt.Dimension(800, 600));
+
+        javax.swing.GroupLayout memberFormPanelLayout = new javax.swing.GroupLayout(memberFormPanel);
+        memberFormPanel.setLayout(memberFormPanelLayout);
+        memberFormPanelLayout.setHorizontalGroup(
+            memberFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 788, Short.MAX_VALUE)
+        );
+        memberFormPanelLayout.setVerticalGroup(
+            memberFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 588, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout MemberFormLayout = new javax.swing.GroupLayout(MemberForm.getContentPane());
+        MemberForm.getContentPane().setLayout(MemberFormLayout);
+        MemberFormLayout.setHorizontalGroup(
+            MemberFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MemberFormLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(memberFormPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        MemberFormLayout.setVerticalGroup(
+            MemberFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MemberFormLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(memberFormPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        AboutForm.setSize(new java.awt.Dimension(800, 600));
+
+        javax.swing.GroupLayout aboutFormPanelLayout = new javax.swing.GroupLayout(aboutFormPanel);
+        aboutFormPanel.setLayout(aboutFormPanelLayout);
+        aboutFormPanelLayout.setHorizontalGroup(
+            aboutFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 788, Short.MAX_VALUE)
+        );
+        aboutFormPanelLayout.setVerticalGroup(
+            aboutFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 588, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout AboutFormLayout = new javax.swing.GroupLayout(AboutForm.getContentPane());
+        AboutForm.getContentPane().setLayout(AboutFormLayout);
+        AboutFormLayout.setHorizontalGroup(
+            AboutFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AboutFormLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(aboutFormPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        AboutFormLayout.setVerticalGroup(
+            AboutFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AboutFormLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(aboutFormPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout mainFormPanelLayout = new javax.swing.GroupLayout(mainFormPanel);
+        mainFormPanel.setLayout(mainFormPanelLayout);
+        mainFormPanelLayout.setHorizontalGroup(
+            mainFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 788, Short.MAX_VALUE)
+        );
+        mainFormPanelLayout.setVerticalGroup(
+            mainFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 565, Short.MAX_VALUE)
         );
 
         fileMenu.setText("File");
 
         exitMenuItem.setText("Exit");
+        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitMenuItemActionPerformed(evt);
+            }
+        });
         fileMenu.add(exitMenuItem);
 
         mainMenuBar.add(fileMenu);
 
         dataMenu.setText("Data");
 
-        employeesMenuItem.setText("Employees...");
-        dataMenu.add(employeesMenuItem);
+        employeeMenuItem.setText("Employee...");
+        employeeMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                employeeMenuItemActionPerformed(evt);
+            }
+        });
+        dataMenu.add(employeeMenuItem);
 
-        membersMenuItem.setText("Members...");
-        dataMenu.add(membersMenuItem);
+        memberMenuItem.setText("Member...");
+        memberMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                memberMenuItemActionPerformed(evt);
+            }
+        });
+        dataMenu.add(memberMenuItem);
 
         mainMenuBar.add(dataMenu);
 
         helpMenu.setText("Help");
 
         aboutMenuItem.setText("About");
+        aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutMenuItemActionPerformed(evt);
+            }
+        });
         helpMenu.add(aboutMenuItem);
 
         mainMenuBar.add(helpMenu);
@@ -93,19 +211,35 @@ public class MainForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(mainFormPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(mainFormPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void employeeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeMenuItemActionPerformed
+        EmployeeForm.setVisible(true);
+    }//GEN-LAST:event_employeeMenuItemActionPerformed
+
+    private void memberMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberMenuItemActionPerformed
+        MemberForm.setVisible(true);
+    }//GEN-LAST:event_memberMenuItemActionPerformed
+
+    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_exitMenuItemActionPerformed
+
+    private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
+        AboutForm.setVisible(true);
+    }//GEN-LAST:event_aboutMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,14 +277,20 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFrame AboutForm;
+    private javax.swing.JFrame EmployeeForm;
+    private javax.swing.JFrame MemberForm;
+    private javax.swing.JPanel aboutFormPanel;
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JMenu dataMenu;
-    private javax.swing.JMenuItem employeesMenuItem;
+    private javax.swing.JPanel employeeFormPanel;
+    private javax.swing.JMenuItem employeeMenuItem;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JPanel mainFormPanel;
     private javax.swing.JMenuBar mainMenuBar;
-    private javax.swing.JPanel mainPanel;
-    private javax.swing.JMenuItem membersMenuItem;
+    private javax.swing.JPanel memberFormPanel;
+    private javax.swing.JMenuItem memberMenuItem;
     // End of variables declaration//GEN-END:variables
 }
