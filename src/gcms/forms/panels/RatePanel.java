@@ -6,8 +6,19 @@
 package gcms.forms.panels;
 
 /**
- *
- * @author solom
+ * The Golf Course Management System (GCMS) enables employees of a golf course
+ * to perform daily tasks such as completing transactions, storing employee and
+ * member information, and scheduling grounds work.
+ * 
+ * This project has been designed and developed for course CIS4810 Systems
+ * Development Project taught by Professor Mary Garrett. Project Team 1 consists
+ * of the following team members: Michael Abbotts, Baron Amman, Ryan Cipullo,
+ * Solomon Colley, and David Ward.
+ * 
+ * @author Solomon Colley
+ * @see SDD for more information on system design and documentation
+ * @since 9/23/2019
+ * @version 1.0
  */
 public class RatePanel extends javax.swing.JPanel {
 

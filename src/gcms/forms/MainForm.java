@@ -5,6 +5,11 @@
  */
 package gcms.forms;
 
+import gcms.forms.panels.MemberPanel;
+import gcms.forms.panels.AboutPanel;
+import gcms.forms.panels.EmployeePanel;
+import gcms.forms.panels.PurchasePanel;
+import gcms.forms.panels.RatePanel;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -50,6 +55,8 @@ public class MainForm extends javax.swing.JFrame {
         dataMenu = new javax.swing.JMenu();
         employeeMenuItem = new javax.swing.JMenuItem();
         memberMenuItem = new javax.swing.JMenuItem();
+        purchaseMenuItem = new javax.swing.JMenuItem();
+        rateMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         aboutMenuItem = new javax.swing.JMenuItem();
 
@@ -97,6 +104,22 @@ public class MainForm extends javax.swing.JFrame {
         });
         dataMenu.add(memberMenuItem);
 
+        purchaseMenuItem.setText("Purchase...");
+        purchaseMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                purchaseMenuItemActionPerformed(evt);
+            }
+        });
+        dataMenu.add(purchaseMenuItem);
+
+        rateMenuItem.setText("Rate...");
+        rateMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rateMenuItemActionPerformed(evt);
+            }
+        });
+        dataMenu.add(rateMenuItem);
+
         mainMenuBar.add(dataMenu);
 
         helpMenu.setText("Help");
@@ -141,16 +164,31 @@ public class MainForm extends javax.swing.JFrame {
         MemberForm = new JFrame();
         MemberPanel = new MemberPanel();
         MemberForm.setSize(new Dimension(600, 400));
+        MemberForm.setTitle("Member");
         MemberForm.add(MemberPanel);
         
         EmployeeForm = new JFrame();
         EmployeePanel = new EmployeePanel();
         EmployeeForm.setSize(new Dimension(600, 400));
+        EmployeeForm.setTitle("Employee");
         EmployeeForm.add(EmployeePanel);
+        
+        PurchaseForm = new JFrame();
+        PurchasePanel = new PurchasePanel();
+        PurchaseForm.setSize(new Dimension(600, 400));
+        PurchaseForm.setTitle("Purchase");
+        PurchaseForm.add(PurchasePanel);
+        
+        RateForm = new JFrame();
+        RatePanel = new RatePanel();
+        RateForm.setSize(new Dimension(600, 400));
+        RateForm.setTitle("Rate");
+        RateForm.add(RatePanel);
         
         AboutForm = new JFrame();
         AboutPanel = new AboutPanel();
         AboutForm.setSize(new Dimension(600, 400));
+        AboutForm.setTitle("About the GCMS");
         AboutForm.add(AboutPanel);
     }
     
@@ -169,6 +207,14 @@ public class MainForm extends javax.swing.JFrame {
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
         AboutForm.setVisible(true);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
+
+    private void purchaseMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseMenuItemActionPerformed
+        PurchaseForm.setVisible(true);
+    }//GEN-LAST:event_purchaseMenuItemActionPerformed
+
+    private void rateMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rateMenuItemActionPerformed
+        RateForm.setVisible(true);
+    }//GEN-LAST:event_rateMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,11 +261,15 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JPanel mainFormPanel;
     private javax.swing.JMenuBar mainMenuBar;
     private javax.swing.JMenuItem memberMenuItem;
+    private javax.swing.JMenuItem purchaseMenuItem;
+    private javax.swing.JMenuItem rateMenuItem;
     // End of variables declaration//GEN-END:variables
 
     // Additional variables declaration
     // JFrames and JPanels used in MVC system structure
-    private JFrame MemberForm, EmployeeForm, AboutForm;
-    private JPanel MemberPanel, EmployeePanel, AboutPanel;
+    private JFrame MemberForm, EmployeeForm, AboutForm, PurchaseForm,
+            RateForm;
+    private JPanel MemberPanel, EmployeePanel, AboutPanel, PurchasePanel,
+            RatePanel;
     // End of additional variables declaration
 }
