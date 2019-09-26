@@ -5,11 +5,7 @@
  */
 package gcms.forms;
 
-import gcms.forms.panels.MemberPanel;
-import gcms.forms.panels.AboutPanel;
-import gcms.forms.panels.EmployeePanel;
-import gcms.forms.panels.PurchasePanel;
-import gcms.forms.panels.RatePanel;
+import gcms.forms.panels.*;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -57,6 +53,7 @@ public class MainForm extends javax.swing.JFrame {
         memberMenuItem = new javax.swing.JMenuItem();
         purchaseMenuItem = new javax.swing.JMenuItem();
         rateMenuItem = new javax.swing.JMenuItem();
+        jobMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         aboutMenuItem = new javax.swing.JMenuItem();
 
@@ -119,6 +116,14 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
         dataMenu.add(rateMenuItem);
+
+        jobMenuItem.setText("Job...");
+        jobMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jobMenuItemActionPerformed(evt);
+            }
+        });
+        dataMenu.add(jobMenuItem);
 
         mainMenuBar.add(dataMenu);
 
@@ -185,6 +190,12 @@ public class MainForm extends javax.swing.JFrame {
         RateForm.setTitle("Rate");
         RateForm.add(RatePanel);
         
+        JobForm = new JFrame();
+        JobPanel = new JobPanel();
+        JobForm.setSize(new Dimension(600, 400));
+        JobForm.setTitle("Job");
+        JobForm.add(JobPanel);
+        
         AboutForm = new JFrame();
         AboutPanel = new AboutPanel();
         AboutForm.setSize(new Dimension(600, 400));
@@ -215,6 +226,10 @@ public class MainForm extends javax.swing.JFrame {
     private void rateMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rateMenuItemActionPerformed
         RateForm.setVisible(true);
     }//GEN-LAST:event_rateMenuItemActionPerformed
+
+    private void jobMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobMenuItemActionPerformed
+        JobForm.setVisible(true);
+    }//GEN-LAST:event_jobMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -258,6 +273,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JMenuItem jobMenuItem;
     private javax.swing.JPanel mainFormPanel;
     private javax.swing.JMenuBar mainMenuBar;
     private javax.swing.JMenuItem memberMenuItem;
@@ -268,8 +284,8 @@ public class MainForm extends javax.swing.JFrame {
     // Additional variables declaration
     // JFrames and JPanels used in MVC system structure
     private JFrame MemberForm, EmployeeForm, AboutForm, PurchaseForm,
-            RateForm;
+            RateForm, JobForm;
     private JPanel MemberPanel, EmployeePanel, AboutPanel, PurchasePanel,
-            RatePanel;
+            RatePanel, JobPanel;
     // End of additional variables declaration
 }
