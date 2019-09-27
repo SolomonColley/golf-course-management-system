@@ -54,6 +54,11 @@ public class MainForm extends javax.swing.JFrame {
         purchaseMenuItem = new javax.swing.JMenuItem();
         rateMenuItem = new javax.swing.JMenuItem();
         jobMenuItem = new javax.swing.JMenuItem();
+        calendarMenuItem = new javax.swing.JMenuItem();
+        purchaseLineMenuItem = new javax.swing.JMenuItem();
+        employeeScheduleMenuItem = new javax.swing.JMenuItem();
+        teeScheduleMenuItem = new javax.swing.JMenuItem();
+        teeTimeMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         aboutMenuItem = new javax.swing.JMenuItem();
 
@@ -124,6 +129,46 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
         dataMenu.add(jobMenuItem);
+
+        calendarMenuItem.setText("Calendar...");
+        calendarMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calendarMenuItemActionPerformed(evt);
+            }
+        });
+        dataMenu.add(calendarMenuItem);
+
+        purchaseLineMenuItem.setText("Purchase Line...");
+        purchaseLineMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                purchaseLineMenuItemActionPerformed(evt);
+            }
+        });
+        dataMenu.add(purchaseLineMenuItem);
+
+        employeeScheduleMenuItem.setText("Employee Schedue...");
+        employeeScheduleMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                employeeScheduleMenuItemActionPerformed(evt);
+            }
+        });
+        dataMenu.add(employeeScheduleMenuItem);
+
+        teeScheduleMenuItem.setText("Tee Time Schedule...");
+        teeScheduleMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                teeScheduleMenuItemActionPerformed(evt);
+            }
+        });
+        dataMenu.add(teeScheduleMenuItem);
+
+        teeTimeMenuItem.setText("Tee Time...");
+        teeTimeMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                teeTimeMenuItemActionPerformed(evt);
+            }
+        });
+        dataMenu.add(teeTimeMenuItem);
 
         mainMenuBar.add(dataMenu);
 
@@ -196,6 +241,36 @@ public class MainForm extends javax.swing.JFrame {
         JobForm.setTitle("Job");
         JobForm.add(JobPanel);
         
+        CalendarForm = new JFrame();
+        CalendarPanel = new CalendarPanel();
+        CalendarForm.setSize(new Dimension(600, 400));
+        CalendarForm.setTitle("Calendar");
+        CalendarForm.add(CalendarPanel);
+        
+        PurchaseLineForm = new JFrame();
+        PurchaseLinePanel = new PurchaseLinePanel();
+        PurchaseLineForm.setSize(new Dimension(600, 400));
+        PurchaseLineForm.setTitle("Purchase Line");
+        PurchaseLineForm.add(PurchaseLinePanel);
+        
+        EmployeeScheduleForm = new JFrame();
+        EmployeeSchedulePanel = new EmployeeSchedulePanel();
+        EmployeeScheduleForm.setSize(new Dimension(600, 400));
+        EmployeeScheduleForm.setTitle("Employee Schedule");
+        EmployeeScheduleForm.add(EmployeeSchedulePanel);
+        
+        TeeScheduleForm = new JFrame();
+        TeeSchedulePanel = new TeeSchedulePanel();
+        TeeScheduleForm.setSize(new Dimension(600, 400));
+        TeeScheduleForm.setTitle("Tee Time Schedule");
+        TeeScheduleForm.add(TeeSchedulePanel);
+        
+        TeeTimeForm = new JFrame();
+        TeeTimePanel = new TeeTimePanel();
+        TeeTimeForm.setSize(new Dimension(600, 400));
+        TeeTimeForm.setTitle("Tee Time");
+        TeeTimeForm.add(TeeTimePanel);
+        
         AboutForm = new JFrame();
         AboutPanel = new AboutPanel();
         AboutForm.setSize(new Dimension(600, 400));
@@ -230,6 +305,26 @@ public class MainForm extends javax.swing.JFrame {
     private void jobMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobMenuItemActionPerformed
         JobForm.setVisible(true);
     }//GEN-LAST:event_jobMenuItemActionPerformed
+
+    private void calendarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calendarMenuItemActionPerformed
+        CalendarForm.setVisible(true);
+    }//GEN-LAST:event_calendarMenuItemActionPerformed
+
+    private void purchaseLineMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseLineMenuItemActionPerformed
+        PurchaseLineForm.setVisible(true);
+    }//GEN-LAST:event_purchaseLineMenuItemActionPerformed
+
+    private void employeeScheduleMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeScheduleMenuItemActionPerformed
+        EmployeeScheduleForm.setVisible(true);
+    }//GEN-LAST:event_employeeScheduleMenuItemActionPerformed
+
+    private void teeScheduleMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teeScheduleMenuItemActionPerformed
+        TeeScheduleForm.setVisible(true);
+    }//GEN-LAST:event_teeScheduleMenuItemActionPerformed
+
+    private void teeTimeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teeTimeMenuItemActionPerformed
+        TeeTimeForm.setVisible(true);
+    }//GEN-LAST:event_teeTimeMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,8 +363,10 @@ public class MainForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
+    private javax.swing.JMenuItem calendarMenuItem;
     private javax.swing.JMenu dataMenu;
     private javax.swing.JMenuItem employeeMenuItem;
+    private javax.swing.JMenuItem employeeScheduleMenuItem;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
@@ -277,15 +374,20 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JPanel mainFormPanel;
     private javax.swing.JMenuBar mainMenuBar;
     private javax.swing.JMenuItem memberMenuItem;
+    private javax.swing.JMenuItem purchaseLineMenuItem;
     private javax.swing.JMenuItem purchaseMenuItem;
     private javax.swing.JMenuItem rateMenuItem;
+    private javax.swing.JMenuItem teeScheduleMenuItem;
+    private javax.swing.JMenuItem teeTimeMenuItem;
     // End of variables declaration//GEN-END:variables
 
     // Additional variables declaration
     // JFrames and JPanels used in MVC system structure
     private JFrame MemberForm, EmployeeForm, AboutForm, PurchaseForm,
-            RateForm, JobForm;
+            RateForm, JobForm, CalendarForm, PurchaseLineForm,
+            EmployeeScheduleForm, TeeScheduleForm, TeeTimeForm;
     private JPanel MemberPanel, EmployeePanel, AboutPanel, PurchasePanel,
-            RatePanel, JobPanel;
+            RatePanel, JobPanel, CalendarPanel, PurchaseLinePanel,
+            EmployeeSchedulePanel, TeeSchedulePanel, TeeTimePanel;
     // End of additional variables declaration
 }
