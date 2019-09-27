@@ -6,9 +6,15 @@
 package gcms.forms;
 
 import gcms.forms.panels.*;
+import gcms.rdms.Connection;
 import java.awt.Dimension;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.*;
 
 /**
  * The Golf Course Management System (GCMS) enables employees of a golf course
@@ -45,6 +51,12 @@ public class MainForm extends javax.swing.JFrame {
     private void initComponents() {
 
         mainFormPanel = new javax.swing.JPanel();
+        versionLabel = new javax.swing.JLabel();
+        gcmsScrollPane = new javax.swing.JScrollPane();
+        gcmsTable = new javax.swing.JTable();
+        selectTableLabel = new javax.swing.JLabel();
+        tableComboBox = new javax.swing.JComboBox<>();
+        loadBtn = new javax.swing.JButton();
         mainMenuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         exitMenuItem = new javax.swing.JMenuItem();
@@ -65,15 +77,65 @@ public class MainForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Golf Course Management System");
 
+        versionLabel.setText("Version 1.0");
+
+        gcmsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        gcmsScrollPane.setViewportView(gcmsTable);
+
+        selectTableLabel.setText("Select a table to view");
+
+        tableComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Employees", "Members", "Purchase", "Rates", "JobList", "Calendar", "PurchaseLine", "EmplSchedule", "TeeSchedule", "TeeTimes" }));
+
+        loadBtn.setText("Load");
+        loadBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout mainFormPanelLayout = new javax.swing.GroupLayout(mainFormPanel);
         mainFormPanel.setLayout(mainFormPanelLayout);
         mainFormPanelLayout.setHorizontalGroup(
             mainFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 788, Short.MAX_VALUE)
+            .addGroup(mainFormPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(mainFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainFormPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(versionLabel))
+                    .addComponent(gcmsScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
+                    .addGroup(mainFormPanelLayout.createSequentialGroup()
+                        .addComponent(selectTableLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(tableComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(loadBtn)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         mainFormPanelLayout.setVerticalGroup(
             mainFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 565, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainFormPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(mainFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(selectTableLabel)
+                    .addComponent(tableComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loadBtn))
+                .addGap(18, 18, 18)
+                .addComponent(gcmsScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(versionLabel)
+                .addContainerGap())
         );
 
         fileMenu.setText("File");
@@ -205,7 +267,7 @@ public class MainForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     /**
      * Initializes all the JFrames (forms) utilized by the GCMS. JPanels stored
      * in separate files are added to their respective forms.
@@ -326,6 +388,40 @@ public class MainForm extends javax.swing.JFrame {
         TeeTimeForm.setVisible(true);
     }//GEN-LAST:event_teeTimeMenuItemActionPerformed
 
+    private void loadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadBtnActionPerformed
+        try {
+            Connection.connect("jdbc:sqlite:data/gcms_db.db");
+            Statement stmt = Connection.getConnection().createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM [" + tableComboBox.getSelectedItem() + "];");
+            
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columnCount = rsmd.getColumnCount();
+            
+            DefaultTableModel tm = (DefaultTableModel) gcmsTable.getModel();
+            
+            tm.setColumnCount(0);
+            
+            for (int i = 1; i <= columnCount; i++)
+                tm.addColumn(rsmd.getColumnName(i));
+            
+            tm.setRowCount(0);
+            
+            while (rs.next()) {
+                String[] a = new String[columnCount];
+                for (int i = 0; i < columnCount; i++)
+                    a[i] = rs.getString(i + 1);
+                tm.addRow(a);
+            }
+            tm.fireTableDataChanged();
+            
+            rs.close();
+            stmt.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(new JFrame(), "Cannot populate the table.",
+                "Dialog", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_loadBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -369,16 +465,22 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem employeeScheduleMenuItem;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JScrollPane gcmsScrollPane;
+    private javax.swing.JTable gcmsTable;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenuItem jobMenuItem;
+    private javax.swing.JButton loadBtn;
     private javax.swing.JPanel mainFormPanel;
     private javax.swing.JMenuBar mainMenuBar;
     private javax.swing.JMenuItem memberMenuItem;
     private javax.swing.JMenuItem purchaseLineMenuItem;
     private javax.swing.JMenuItem purchaseMenuItem;
     private javax.swing.JMenuItem rateMenuItem;
+    private javax.swing.JLabel selectTableLabel;
+    private javax.swing.JComboBox<String> tableComboBox;
     private javax.swing.JMenuItem teeScheduleMenuItem;
     private javax.swing.JMenuItem teeTimeMenuItem;
+    private javax.swing.JLabel versionLabel;
     // End of variables declaration//GEN-END:variables
 
     // Additional variables declaration
