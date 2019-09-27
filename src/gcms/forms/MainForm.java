@@ -6,15 +6,10 @@
 package gcms.forms;
 
 import gcms.forms.panels.*;
-import gcms.rdms.Connection;
+import gcms.rdms.RDMS;
 import java.awt.Dimension;
-import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.table.*;
 
 /**
  * The Golf Course Management System (GCMS) enables employees of a golf course
@@ -61,16 +56,6 @@ public class MainForm extends javax.swing.JFrame {
         fileMenu = new javax.swing.JMenu();
         exitMenuItem = new javax.swing.JMenuItem();
         dataMenu = new javax.swing.JMenu();
-        employeeMenuItem = new javax.swing.JMenuItem();
-        memberMenuItem = new javax.swing.JMenuItem();
-        purchaseMenuItem = new javax.swing.JMenuItem();
-        rateMenuItem = new javax.swing.JMenuItem();
-        jobMenuItem = new javax.swing.JMenuItem();
-        calendarMenuItem = new javax.swing.JMenuItem();
-        purchaseLineMenuItem = new javax.swing.JMenuItem();
-        employeeScheduleMenuItem = new javax.swing.JMenuItem();
-        teeScheduleMenuItem = new javax.swing.JMenuItem();
-        teeTimeMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         aboutMenuItem = new javax.swing.JMenuItem();
 
@@ -151,87 +136,6 @@ public class MainForm extends javax.swing.JFrame {
         mainMenuBar.add(fileMenu);
 
         dataMenu.setText("Data");
-
-        employeeMenuItem.setText("Employee...");
-        employeeMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                employeeMenuItemActionPerformed(evt);
-            }
-        });
-        dataMenu.add(employeeMenuItem);
-
-        memberMenuItem.setText("Member...");
-        memberMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                memberMenuItemActionPerformed(evt);
-            }
-        });
-        dataMenu.add(memberMenuItem);
-
-        purchaseMenuItem.setText("Purchase...");
-        purchaseMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                purchaseMenuItemActionPerformed(evt);
-            }
-        });
-        dataMenu.add(purchaseMenuItem);
-
-        rateMenuItem.setText("Rate...");
-        rateMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rateMenuItemActionPerformed(evt);
-            }
-        });
-        dataMenu.add(rateMenuItem);
-
-        jobMenuItem.setText("Job...");
-        jobMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jobMenuItemActionPerformed(evt);
-            }
-        });
-        dataMenu.add(jobMenuItem);
-
-        calendarMenuItem.setText("Calendar...");
-        calendarMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                calendarMenuItemActionPerformed(evt);
-            }
-        });
-        dataMenu.add(calendarMenuItem);
-
-        purchaseLineMenuItem.setText("Purchase Line...");
-        purchaseLineMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                purchaseLineMenuItemActionPerformed(evt);
-            }
-        });
-        dataMenu.add(purchaseLineMenuItem);
-
-        employeeScheduleMenuItem.setText("Employee Schedue...");
-        employeeScheduleMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                employeeScheduleMenuItemActionPerformed(evt);
-            }
-        });
-        dataMenu.add(employeeScheduleMenuItem);
-
-        teeScheduleMenuItem.setText("Tee Time Schedule...");
-        teeScheduleMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                teeScheduleMenuItemActionPerformed(evt);
-            }
-        });
-        dataMenu.add(teeScheduleMenuItem);
-
-        teeTimeMenuItem.setText("Tee Time...");
-        teeTimeMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                teeTimeMenuItemActionPerformed(evt);
-            }
-        });
-        dataMenu.add(teeTimeMenuItem);
-
         mainMenuBar.add(dataMenu);
 
         helpMenu.setText("Help");
@@ -273,81 +177,13 @@ public class MainForm extends javax.swing.JFrame {
      * in separate files are added to their respective forms.
      */
     private void initForms() {
-        MemberForm = new JFrame();
-        MemberPanel = new MemberPanel();
-        MemberForm.setSize(new Dimension(600, 400));
-        MemberForm.setTitle("Member");
-        MemberForm.add(MemberPanel);
-        
-        EmployeeForm = new JFrame();
-        EmployeePanel = new EmployeePanel();
-        EmployeeForm.setSize(new Dimension(600, 400));
-        EmployeeForm.setTitle("Employee");
-        EmployeeForm.add(EmployeePanel);
-        
-        PurchaseForm = new JFrame();
-        PurchasePanel = new PurchasePanel();
-        PurchaseForm.setSize(new Dimension(600, 400));
-        PurchaseForm.setTitle("Purchase");
-        PurchaseForm.add(PurchasePanel);
-        
-        RateForm = new JFrame();
-        RatePanel = new RatePanel();
-        RateForm.setSize(new Dimension(600, 400));
-        RateForm.setTitle("Rate");
-        RateForm.add(RatePanel);
-        
-        JobForm = new JFrame();
-        JobPanel = new JobPanel();
-        JobForm.setSize(new Dimension(600, 400));
-        JobForm.setTitle("Job");
-        JobForm.add(JobPanel);
-        
-        CalendarForm = new JFrame();
-        CalendarPanel = new CalendarPanel();
-        CalendarForm.setSize(new Dimension(600, 400));
-        CalendarForm.setTitle("Calendar");
-        CalendarForm.add(CalendarPanel);
-        
-        PurchaseLineForm = new JFrame();
-        PurchaseLinePanel = new PurchaseLinePanel();
-        PurchaseLineForm.setSize(new Dimension(600, 400));
-        PurchaseLineForm.setTitle("Purchase Line");
-        PurchaseLineForm.add(PurchaseLinePanel);
-        
-        EmployeeScheduleForm = new JFrame();
-        EmployeeSchedulePanel = new EmployeeSchedulePanel();
-        EmployeeScheduleForm.setSize(new Dimension(600, 400));
-        EmployeeScheduleForm.setTitle("Employee Schedule");
-        EmployeeScheduleForm.add(EmployeeSchedulePanel);
-        
-        TeeScheduleForm = new JFrame();
-        TeeSchedulePanel = new TeeSchedulePanel();
-        TeeScheduleForm.setSize(new Dimension(600, 400));
-        TeeScheduleForm.setTitle("Tee Time Schedule");
-        TeeScheduleForm.add(TeeSchedulePanel);
-        
-        TeeTimeForm = new JFrame();
-        TeeTimePanel = new TeeTimePanel();
-        TeeTimeForm.setSize(new Dimension(600, 400));
-        TeeTimeForm.setTitle("Tee Time");
-        TeeTimeForm.add(TeeTimePanel);
-        
         AboutForm = new JFrame();
         AboutPanel = new AboutPanel();
         AboutForm.setSize(new Dimension(600, 400));
         AboutForm.setTitle("About the GCMS");
         AboutForm.add(AboutPanel);
-    }
+    } // end initForms
     
-    private void employeeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeMenuItemActionPerformed
-        EmployeeForm.setVisible(true);
-    }//GEN-LAST:event_employeeMenuItemActionPerformed
-
-    private void memberMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberMenuItemActionPerformed
-        MemberForm.setVisible(true);
-    }//GEN-LAST:event_memberMenuItemActionPerformed
-
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
@@ -356,70 +192,9 @@ public class MainForm extends javax.swing.JFrame {
         AboutForm.setVisible(true);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
-    private void purchaseMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseMenuItemActionPerformed
-        PurchaseForm.setVisible(true);
-    }//GEN-LAST:event_purchaseMenuItemActionPerformed
-
-    private void rateMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rateMenuItemActionPerformed
-        RateForm.setVisible(true);
-    }//GEN-LAST:event_rateMenuItemActionPerformed
-
-    private void jobMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jobMenuItemActionPerformed
-        JobForm.setVisible(true);
-    }//GEN-LAST:event_jobMenuItemActionPerformed
-
-    private void calendarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calendarMenuItemActionPerformed
-        CalendarForm.setVisible(true);
-    }//GEN-LAST:event_calendarMenuItemActionPerformed
-
-    private void purchaseLineMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseLineMenuItemActionPerformed
-        PurchaseLineForm.setVisible(true);
-    }//GEN-LAST:event_purchaseLineMenuItemActionPerformed
-
-    private void employeeScheduleMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeScheduleMenuItemActionPerformed
-        EmployeeScheduleForm.setVisible(true);
-    }//GEN-LAST:event_employeeScheduleMenuItemActionPerformed
-
-    private void teeScheduleMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teeScheduleMenuItemActionPerformed
-        TeeScheduleForm.setVisible(true);
-    }//GEN-LAST:event_teeScheduleMenuItemActionPerformed
-
-    private void teeTimeMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teeTimeMenuItemActionPerformed
-        TeeTimeForm.setVisible(true);
-    }//GEN-LAST:event_teeTimeMenuItemActionPerformed
-
     private void loadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadBtnActionPerformed
-        try {
-            Connection.connect("jdbc:sqlite:data/gcms_db.db");
-            Statement stmt = Connection.getConnection().createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM [" + tableComboBox.getSelectedItem() + "];");
-            
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int columnCount = rsmd.getColumnCount();
-            
-            DefaultTableModel tm = (DefaultTableModel) gcmsTable.getModel();
-            
-            tm.setColumnCount(0);
-            
-            for (int i = 1; i <= columnCount; i++)
-                tm.addColumn(rsmd.getColumnName(i));
-            
-            tm.setRowCount(0);
-            
-            while (rs.next()) {
-                String[] a = new String[columnCount];
-                for (int i = 0; i < columnCount; i++)
-                    a[i] = rs.getString(i + 1);
-                tm.addRow(a);
-            }
-            tm.fireTableDataChanged();
-            
-            rs.close();
-            stmt.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(new JFrame(), "Cannot populate the table.",
-                "Dialog", JOptionPane.ERROR_MESSAGE);
-        }
+        // read the selected db table's records into the table
+        RDMS.read(tableComboBox.getSelectedItem(), gcmsTable);
     }//GEN-LAST:event_loadBtnActionPerformed
 
     /**
@@ -459,37 +234,23 @@ public class MainForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
-    private javax.swing.JMenuItem calendarMenuItem;
     private javax.swing.JMenu dataMenu;
-    private javax.swing.JMenuItem employeeMenuItem;
-    private javax.swing.JMenuItem employeeScheduleMenuItem;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JScrollPane gcmsScrollPane;
     private javax.swing.JTable gcmsTable;
     private javax.swing.JMenu helpMenu;
-    private javax.swing.JMenuItem jobMenuItem;
     private javax.swing.JButton loadBtn;
     private javax.swing.JPanel mainFormPanel;
     private javax.swing.JMenuBar mainMenuBar;
-    private javax.swing.JMenuItem memberMenuItem;
-    private javax.swing.JMenuItem purchaseLineMenuItem;
-    private javax.swing.JMenuItem purchaseMenuItem;
-    private javax.swing.JMenuItem rateMenuItem;
     private javax.swing.JLabel selectTableLabel;
     private javax.swing.JComboBox<String> tableComboBox;
-    private javax.swing.JMenuItem teeScheduleMenuItem;
-    private javax.swing.JMenuItem teeTimeMenuItem;
     private javax.swing.JLabel versionLabel;
     // End of variables declaration//GEN-END:variables
 
     // Additional variables declaration
     // JFrames and JPanels used in MVC system structure
-    private JFrame MemberForm, EmployeeForm, AboutForm, PurchaseForm,
-            RateForm, JobForm, CalendarForm, PurchaseLineForm,
-            EmployeeScheduleForm, TeeScheduleForm, TeeTimeForm;
-    private JPanel MemberPanel, EmployeePanel, AboutPanel, PurchasePanel,
-            RatePanel, JobPanel, CalendarPanel, PurchaseLinePanel,
-            EmployeeSchedulePanel, TeeSchedulePanel, TeeTimePanel;
+    private JFrame AboutForm;
+    private JPanel AboutPanel;
     // End of additional variables declaration
 }

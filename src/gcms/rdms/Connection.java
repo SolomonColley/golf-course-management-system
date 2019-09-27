@@ -34,20 +34,36 @@ public class Connection {
     private static final String IS_VALID_ERROR_MSG =
             "Could not determine the validity of the database connection.";
     
+    /**
+     * Connects to the database specified by the URL.
+     * @param url the URL (file path) to the database
+     */
     public static void connect(String url) {
         conn = null;
         
+        // try connecting to the database with the given url
+        // if connection fails, display appropriate exception
         try {
+            Class.forName("org.sqlite.JDBC");
             conn = DriverManager.getConnection(url);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(new JFrame(), CONNECT_ERROR_MSG,
                 "Dialog", JOptionPane.ERROR_MESSAGE);
-        } // end try-catch // end try-catch
+        } catch (ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(new JFrame(), "The class was not found.",
+                "Dialog", JOptionPane.ERROR_MESSAGE);
+        } // end try-catch
     } // end connect
     
+    /**
+     * Disconnects from the database if a connection is currently valid.
+     */
     public static void disconnect() {
+        // try disconnecting from the database
+        // if the connection is connected or not null, close it
+        // if there is no connection, display appropriate exception
         try {
-            if (conn != null)
+            if (isValidConnection() || conn != null)
                 conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(new JFrame(), DISCONNECT_ERROR_MSG,
@@ -55,9 +71,15 @@ public class Connection {
         } // end try-catch // end try-catch
     } // end disconnect
     
-    public static boolean isConnected() {
+    /**
+     * Determines whether the connection is connected (valid) or not.
+     * @return true if the connection is connected (valid), or false if not
+     */
+    public static boolean isValidConnection() {
         boolean isValid = false;
         
+        // try testing for the validity of the connection
+        // if the connection is not valid, display appropriate exception
         try {
             isValid = conn.isValid(0);
         } catch (SQLException e) {
@@ -68,6 +90,10 @@ public class Connection {
         return isValid;
     } // end isConnected
     
+    /**
+     * Gets the connection object.
+     * @return the connection object
+     */
     public static java.sql.Connection getConnection() {
         return conn;
     } // end getConnection
