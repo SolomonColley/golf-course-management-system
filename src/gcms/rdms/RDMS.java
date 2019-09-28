@@ -52,40 +52,38 @@ public class RDMS {
     public static void read(Object dbTable, JTable formTable) {
         try {
             Connection.connect(CONNECTION_STR);
-            Statement statement = Connection.getConnection().createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM [" + dbTable + "];");
-            
-            // get information about the table's columns
-            ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
-            int columnCount = resultSetMetaData.getColumnCount();
-            
-            // table model helps with changing the column and row model
-            DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
-            
-            // reset the table's column count
-            tableModel.setColumnCount(0);
-            
-            // add the source table's columns to the destination table
-            for (int i = 1; i <= columnCount; i++)
-                tableModel.addColumn(resultSetMetaData.getColumnName(i)); // end for
-            
-            // reset the table's row count
-            tableModel.setRowCount(0);
-            
-            // while there are rows to add, populate the table with information
-            while (resultSet.next()) {
-                String[] a = new String[columnCount];
+            try (Statement statement = Connection.getConnection().createStatement();
+                    ResultSet resultSet = statement.executeQuery("SELECT * FROM [" + dbTable + "];")) {
                 
-                for (int i = 0; i < columnCount; i++)
-                    a[i] = resultSet.getString(i + 1); // end for
+                // get information about the table's columns
+                ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
+                int columnCount = resultSetMetaData.getColumnCount();
                 
-                tableModel.addRow(a);
-            } // end while
-            
-            tableModel.fireTableDataChanged();
-            
-            resultSet.close();
-            statement.close();
+                // table model helps with changing the column and row model
+                DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
+                
+                // reset the table's column count
+                tableModel.setColumnCount(0);
+                
+                // add the source table's columns to the destination table
+                for (int i = 1; i <= columnCount; i++)
+                    tableModel.addColumn(resultSetMetaData.getColumnName(i)); // end for
+                
+                // reset the table's row count
+                tableModel.setRowCount(0);
+                
+                // while there are rows to add, populate the table with information
+                while (resultSet.next()) {
+                    String[] a = new String[columnCount];
+                    
+                    for (int i = 0; i < columnCount; i++)
+                        a[i] = resultSet.getString(i + 1); // end for
+                    
+                    tableModel.addRow(a);
+                } // end while
+                
+                tableModel.fireTableDataChanged();
+            }
             Connection.disconnect();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(new JFrame(), READ_ERROR_MSG,

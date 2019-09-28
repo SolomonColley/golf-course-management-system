@@ -68,7 +68,7 @@ public class Connection {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(new JFrame(), DISCONNECT_ERROR_MSG,
                 "Dialog", JOptionPane.ERROR_MESSAGE);
-        } // end try-catch // end try-catch
+        } // end try-catch
     } // end disconnect
     
     /**
