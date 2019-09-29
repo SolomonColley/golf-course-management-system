@@ -51,7 +51,9 @@ public class MainForm extends javax.swing.JFrame {
         gcmsTable = new javax.swing.JTable();
         selectTableLabel = new javax.swing.JLabel();
         tableComboBox = new javax.swing.JComboBox<>();
-        loadBtn = new javax.swing.JButton();
+        createBtn = new javax.swing.JButton();
+        updateBtn = new javax.swing.JButton();
+        deleteBtn = new javax.swing.JButton();
         mainMenuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         exitMenuItem = new javax.swing.JMenuItem();
@@ -77,16 +79,20 @@ public class MainForm extends javax.swing.JFrame {
         ));
         gcmsScrollPane.setViewportView(gcmsTable);
 
-        selectTableLabel.setText("Select a table to view");
+        selectTableLabel.setText("Select a table");
 
         tableComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Employees", "Members", "Purchase", "Rates", "JobList", "Calendar", "PurchaseLine", "EmplSchedule", "TeeSchedule", "TeeTimes" }));
-
-        loadBtn.setText("Load");
-        loadBtn.addActionListener(new java.awt.event.ActionListener() {
+        tableComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loadBtnActionPerformed(evt);
+                tableComboBoxActionPerformed(evt);
             }
         });
+
+        createBtn.setText("Create");
+
+        updateBtn.setText("Update");
+
+        deleteBtn.setText("Delete");
 
         javax.swing.GroupLayout mainFormPanelLayout = new javax.swing.GroupLayout(mainFormPanel);
         mainFormPanel.setLayout(mainFormPanelLayout);
@@ -95,17 +101,20 @@ public class MainForm extends javax.swing.JFrame {
             .addGroup(mainFormPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(mainFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(gcmsScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainFormPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(versionLabel))
-                    .addComponent(gcmsScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
                     .addGroup(mainFormPanelLayout.createSequentialGroup()
                         .addComponent(selectTableLabel)
                         .addGap(18, 18, 18)
                         .addComponent(tableComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(createBtn)
                         .addGap(18, 18, 18)
-                        .addComponent(loadBtn)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(updateBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(deleteBtn)))
                 .addContainerGap())
         );
         mainFormPanelLayout.setVerticalGroup(
@@ -115,7 +124,9 @@ public class MainForm extends javax.swing.JFrame {
                 .addGroup(mainFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(selectTableLabel)
                     .addComponent(tableComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loadBtn))
+                    .addComponent(createBtn)
+                    .addComponent(updateBtn)
+                    .addComponent(deleteBtn))
                 .addGap(18, 18, 18)
                 .addComponent(gcmsScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -192,10 +203,10 @@ public class MainForm extends javax.swing.JFrame {
         AboutForm.setVisible(true);
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
-    private void loadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadBtnActionPerformed
-        // read the selected db table's records into the table
+    private void tableComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tableComboBoxActionPerformed
+        // read the selected db table's records into the MainForm table
         RDMS.read(tableComboBox.getSelectedItem(), gcmsTable);
-    }//GEN-LAST:event_loadBtnActionPerformed
+    }//GEN-LAST:event_tableComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -234,17 +245,19 @@ public class MainForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
+    private javax.swing.JButton createBtn;
     private javax.swing.JMenu dataMenu;
+    private javax.swing.JButton deleteBtn;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JScrollPane gcmsScrollPane;
     private javax.swing.JTable gcmsTable;
     private javax.swing.JMenu helpMenu;
-    private javax.swing.JButton loadBtn;
     private javax.swing.JPanel mainFormPanel;
     private javax.swing.JMenuBar mainMenuBar;
     private javax.swing.JLabel selectTableLabel;
     private javax.swing.JComboBox<String> tableComboBox;
+    private javax.swing.JButton updateBtn;
     private javax.swing.JLabel versionLabel;
     // End of variables declaration//GEN-END:variables
 

@@ -92,18 +92,21 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="gcmsScrollPane" alignment="0" pref="776" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           <Component id="versionLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="gcmsScrollPane" alignment="0" pref="776" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <Component id="selectTableLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="tableComboBox" min="-2" pref="132" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="createBtn" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="loadBtn" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="updateBtn" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="deleteBtn" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -117,7 +120,9 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="selectTableLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tableComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="loadBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="createBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="updateBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="deleteBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="gcmsScrollPane" pref="469" max="32767" attributes="0"/>
@@ -158,7 +163,7 @@
         </Container>
         <Component class="javax.swing.JLabel" name="selectTableLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Select a table to view"/>
+            <Property name="text" type="java.lang.String" value="Select a table"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="tableComboBox">
@@ -178,17 +183,27 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tableComboBoxActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="loadBtn">
+        <Component class="javax.swing.JButton" name="createBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Load"/>
+            <Property name="text" type="java.lang.String" value="Create"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loadBtnActionPerformed"/>
-          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="updateBtn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Update"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="deleteBtn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Delete"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

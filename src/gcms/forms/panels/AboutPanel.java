@@ -38,19 +38,46 @@ public class AboutPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        aboutScrollPane = new javax.swing.JScrollPane();
+        aboutTextArea = new javax.swing.JTextArea();
+
+        aboutScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        aboutScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        aboutScrollPane.setFocusable(false);
+        aboutScrollPane.setOpaque(false);
+
+        aboutTextArea.setEditable(false);
+        aboutTextArea.setColumns(20);
+        aboutTextArea.setLineWrap(true);
+        aboutTextArea.setRows(5);
+        aboutTextArea.setText("The Golf Course Management System (GCMS) enables employees of a golf course to perform daily tasks such as completing transactions, storing employee and member information, and scheduling grounds work.\n\nThis project has been designed and developed for course CIS4810 Systems Development Project taught by Professor Mary Garrett. Project Team 1 consists of the following team members: Michael Abbotts, Baron Amman, Ryan Cipullo, Solomon Colley, and David Ward.\n\nVerssion 1.0");
+        aboutTextArea.setWrapStyleWord(true);
+        aboutTextArea.setBorder(null);
+        aboutTextArea.setFocusable(false);
+        aboutTextArea.setOpaque(false);
+        aboutScrollPane.setViewportView(aboutTextArea);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(aboutScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(aboutScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane aboutScrollPane;
+    private javax.swing.JTextArea aboutTextArea;
     // End of variables declaration//GEN-END:variables
 }
