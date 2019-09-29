@@ -34,12 +34,10 @@ public class RDMS {
         "jdbc:sqlite:data/gcms_db.db";
     private static final String READ_ERROR_MSG =
         "Cannot populate the table with records.";
-    
-    /* to be added
-    public static void create() {
-        
-    }
-    */
+    private static final String DELETE_ERROR_MSG =
+        "Cannot delete the selected records from the table.";
+    private static final String COMMIT_ERROR_MSG =
+        "Cannot commit table changes.";
     
     /**
      * Operation READ of the GCMS's CRUD design. Connects to the internal
@@ -91,12 +89,65 @@ public class RDMS {
         } // end try-catch
     } // end read
     
-    /* to be added
-    public static void update() {
+    /*
+    public static void update(Object dbTable, JTable formTable) {
+        DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
+        String[] colNames = new String[formTable.getColumnCount()];
+        Object[] rowValues = new Object[formTable.getRowCount()];
         
-    }
+        for (int i = 0; i < colNames.length; i++)
+            colNames[i] = formTable.getColumnName(i);
+        
+        Connection.connect(CONNECTION_STR);
+        for (int i = 0; i < formTable.getColumnCount(); i++) {
+            for (int j = 0; j < formTable.getRowCount(); j++) {
+                rowValues[j] = formTable.getValueAt(i, j);
+            } // end for
+            insert(dbTable, colNames, rowValues);
+        }
+        Connection.disconnect();
+    } // end update
+    */
     
-    public static void delete() {
+    /**
+     * Operation DELETE of the GCMS's CRUD design. Connects to the internal
+     * database, selects the user-specified table, and deletes the specified
+     * rows from the table.
+     * @param dbTable the user-selected database table
+     * @param formTable the form's table with selected records to be deleted
+     */
+    public static void delete(Object dbTable, JTable formTable) {
+        DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
+        int selectedRowCount = formTable.getSelectedRowCount();
+        int[] selectedRowIndices = formTable.getSelectedRows();
+        String colIDName = formTable.getColumnName(0);
+        String sql;
+        Object[] selectedRowIDs = new Object[selectedRowCount];
+        
+        // connect to the database
+        Connection.connect(CONNECTION_STR);
+        
+        try {
+            try (Statement statement = Connection.getConnection().createStatement()) {
+                // for the number of selected rows, remove the selected rows from the database
+                for (int i = 0; i < selectedRowCount; i++) {
+                    selectedRowIDs[i] = tableModel.getValueAt(selectedRowIndices[i], 0);
+                    sql = "DELETE FROM " + dbTable + " WHERE " + colIDName + " = " + selectedRowIDs[i];
+                    statement.executeUpdate(sql);
+                } // end for
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(new JFrame(), DELETE_ERROR_MSG,
+                "Dialog", JOptionPane.ERROR_MESSAGE);
+        } // end try-catch
+        
+        // disconnect from the database and refresh the table view
+        Connection.disconnect();
+        read(dbTable, formTable);
+    } // end delete
+
+    /*
+    private static void insert(Object dbTable, String[] colNames, Object[] rowValues) {
         
     }
     */

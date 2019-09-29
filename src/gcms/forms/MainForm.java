@@ -10,6 +10,7 @@ import gcms.rdms.RDMS;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * The Golf Course Management System (GCMS) enables employees of a golf course
@@ -52,8 +53,9 @@ public class MainForm extends javax.swing.JFrame {
         selectTableLabel = new javax.swing.JLabel();
         tableComboBox = new javax.swing.JComboBox<>();
         createBtn = new javax.swing.JButton();
-        updateBtn = new javax.swing.JButton();
+        commitChangesBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
+        refreshViewBtn = new javax.swing.JButton();
         mainMenuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         exitMenuItem = new javax.swing.JMenuItem();
@@ -89,10 +91,32 @@ public class MainForm extends javax.swing.JFrame {
         });
 
         createBtn.setText("Create");
+        createBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createBtnActionPerformed(evt);
+            }
+        });
 
-        updateBtn.setText("Update");
+        commitChangesBtn.setText("Commit Changes");
+        commitChangesBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                commitChangesBtnActionPerformed(evt);
+            }
+        });
 
         deleteBtn.setText("Delete");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
+
+        refreshViewBtn.setText("Refresh View");
+        refreshViewBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshViewBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainFormPanelLayout = new javax.swing.GroupLayout(mainFormPanel);
         mainFormPanel.setLayout(mainFormPanelLayout);
@@ -112,9 +136,11 @@ public class MainForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(createBtn)
                         .addGap(18, 18, 18)
-                        .addComponent(updateBtn)
+                        .addComponent(deleteBtn)
                         .addGap(18, 18, 18)
-                        .addComponent(deleteBtn)))
+                        .addComponent(refreshViewBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(commitChangesBtn)))
                 .addContainerGap())
         );
         mainFormPanelLayout.setVerticalGroup(
@@ -125,8 +151,9 @@ public class MainForm extends javax.swing.JFrame {
                     .addComponent(selectTableLabel)
                     .addComponent(tableComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(createBtn)
-                    .addComponent(updateBtn)
-                    .addComponent(deleteBtn))
+                    .addComponent(commitChangesBtn)
+                    .addComponent(deleteBtn)
+                    .addComponent(refreshViewBtn))
                 .addGap(18, 18, 18)
                 .addComponent(gcmsScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -204,9 +231,41 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
     private void tableComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tableComboBoxActionPerformed
-        // read the selected db table's records into the MainForm table
+        // read the selected db table's records into the table
+        gcmsTable.setName((String) tableComboBox.getSelectedItem());
         RDMS.read(tableComboBox.getSelectedItem(), gcmsTable);
     }//GEN-LAST:event_tableComboBoxActionPerformed
+
+    private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
+        // add an empty row to the bottom of the table
+        DefaultTableModel tableModel = (DefaultTableModel) gcmsTable.getModel();
+        tableModel.addRow(new Object[] {});
+    }//GEN-LAST:event_createBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // delete any and all selected rows from the table
+        gcmsTable.setName((String) tableComboBox.getSelectedItem());
+        RDMS.delete(tableComboBox.getSelectedItem(), gcmsTable);
+        /*
+        int[] rows = gcmsTable.getSelectedRows();
+        DefaultTableModel tableModel = (DefaultTableModel) gcmsTable.getModel();
+        
+        for (int row : rows)
+            tableModel.removeRow(gcmsTable.convertRowIndexToModel(row)); // end for-each
+        
+        gcmsTable.clearSelection();
+        */
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void refreshViewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshViewBtnActionPerformed
+        // read the selected db table's records into the table
+        gcmsTable.setName((String) tableComboBox.getSelectedItem());
+        RDMS.read(tableComboBox.getSelectedItem(), gcmsTable);
+    }//GEN-LAST:event_refreshViewBtnActionPerformed
+
+    private void commitChangesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commitChangesBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_commitChangesBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -245,6 +304,7 @@ public class MainForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
+    private javax.swing.JButton commitChangesBtn;
     private javax.swing.JButton createBtn;
     private javax.swing.JMenu dataMenu;
     private javax.swing.JButton deleteBtn;
@@ -255,9 +315,9 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenu helpMenu;
     private javax.swing.JPanel mainFormPanel;
     private javax.swing.JMenuBar mainMenuBar;
+    private javax.swing.JButton refreshViewBtn;
     private javax.swing.JLabel selectTableLabel;
     private javax.swing.JComboBox<String> tableComboBox;
-    private javax.swing.JButton updateBtn;
     private javax.swing.JLabel versionLabel;
     // End of variables declaration//GEN-END:variables
 
