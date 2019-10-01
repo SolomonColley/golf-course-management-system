@@ -63,8 +63,38 @@ public class InsertUtility {
     } // end insertToCalendar
     
     public static void insertToEmplSchedule(JTable formTable) {
+        DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
+        int selectedRowCount = formTable.getSelectedRowCount();
+        int[] selectedRowIndices = formTable.getSelectedRows();
+        int dayValue, emplID;
+        String jobValue;
+        String sql = "INSERT INTO EmplSchedule(Day, Job, EmplID) VALUES(?, ?, ?)";
         
-    }
+        // connect to the database
+        Connection.connect(CONNECTION_STR);
+        
+        try (PreparedStatement pstmt = Connection.getConnection().prepareStatement(sql)) {
+            for (int i = 0; i < selectedRowCount; i++) {
+                // get the value in the Day, Job, and EmpID columns at the selected row index
+                dayValue = Integer.parseInt(tableModel.getValueAt(selectedRowIndices[i], 0).toString());
+                jobValue = String.valueOf(tableModel.getValueAt(selectedRowIndices[i], 1).toString());
+                emplID = Integer.parseInt(tableModel.getValueAt(selectedRowIndices[i], 2).toString());
+                
+                // prepare the values for insertion and execute the query
+                pstmt.setInt(1, dayValue);
+                pstmt.setString(2, jobValue);
+                pstmt.setInt(3, emplID);
+                
+                pstmt.executeUpdate();
+            } // end for
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(new JFrame(), CREATE_ERROR_MSG,
+                "Dialog", JOptionPane.ERROR_MESSAGE);
+        } // end try-catch
+        
+        // disconnect from the database
+        Connection.disconnect();
+    } // end insertToEmplSchedule
     
     public static void insertToEmployees(JTable formTable) {
         
