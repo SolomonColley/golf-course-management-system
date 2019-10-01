@@ -30,15 +30,6 @@ import javax.swing.table.DefaultTableModel;
  * @version 1.0
  */
 public class RDMS {
-    private static final String CONNECTION_STR =
-        "jdbc:sqlite:data/gcms_db.db";
-    private static final String READ_ERROR_MSG =
-        "Cannot populate the table with records.";
-    private static final String DELETE_ERROR_MSG =
-        "Cannot delete the selected records from the table.";
-    private static final String COMMIT_ERROR_MSG =
-        "Cannot commit table changes.";
-    
     /**
      * Operation READ of the GCMS's CRUD design. Connects to the internal
      * database, selects a user-specified table, and reads that table's
@@ -127,28 +118,71 @@ public class RDMS {
         // connect to the database
         Connection.connect(CONNECTION_STR);
         
-        try {
-            try (Statement statement = Connection.getConnection().createStatement()) {
-                // for the number of selected rows, remove the selected rows from the database
-                for (int i = 0; i < selectedRowCount; i++) {
-                    selectedRowIDs[i] = tableModel.getValueAt(selectedRowIndices[i], 0);
-                    sql = "DELETE FROM " + dbTable + " WHERE " + colIDName + " = " + selectedRowIDs[i];
-                    statement.executeUpdate(sql);
-                } // end for
-            }
+        try (Statement statement = Connection.getConnection().createStatement()) {
+            // for the number of selected rows, remove the selected rows from the database
+            for (int i = 0; i < selectedRowCount; i++) {
+                selectedRowIDs[i] = tableModel.getValueAt(selectedRowIndices[i], 0);
+                sql = "DELETE FROM " + dbTable + " WHERE " + colIDName + " = " + selectedRowIDs[i];
+                statement.executeUpdate(sql);
+            } // end for
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(new JFrame(), DELETE_ERROR_MSG,
                 "Dialog", JOptionPane.ERROR_MESSAGE);
         } // end try-catch
         
-        // disconnect from the database and refresh the table view
+        // disconnect from the database
         Connection.disconnect();
-        read(dbTable, formTable);
     } // end delete
 
-    /*
-    private static void insert(Object dbTable, String[] colNames, Object[] rowValues) {
-        
-    }
-    */
+    /**
+     * Operation CREATE of the GCMS's CRUD design. Connects to the internal
+     * database, selects the user-specified table, and inserts the specified
+     * rows into the database table.
+     * @param formTable the form's table with selected records to be inserted
+     */
+    public static void create(String dbTable, JTable formTable) {        
+        switch (dbTable) {
+            case "Calendar":
+                InsertUtility.insertToCalendar(formTable);
+                break;
+            case "EmplSchedule":
+                InsertUtility.insertToEmplSchedule(formTable);
+                break;
+            case "Employees":
+                InsertUtility.insertToEmployees(formTable);
+                break;
+            case "JobList":
+                InsertUtility.insertToJobList(formTable);
+                break;
+            case "Members":
+                InsertUtility.insertToMembers(formTable);
+                break;
+            case "Purchase":
+                InsertUtility.insertToPurchase(formTable);
+                break;
+            case "PurchaseLine":
+                InsertUtility.insertToPurchaseLine(formTable);
+                break;
+            case "Rates":
+                InsertUtility.insertToRates(formTable);
+                break;
+            case "TeeSchedule":
+                InsertUtility.insertToTeeSchedule(formTable);
+                break;
+            case "TeeTimes":
+                InsertUtility.insertToTeeTimes(formTable);
+                break;
+            default:
+                break;
+        } // end switch-case
+    } // end insert
+    
+    private static final String CONNECTION_STR =
+        "jdbc:sqlite:data/gcms_db.db";
+    private static final String READ_ERROR_MSG =
+        "Cannot populate the table with records.";
+    private static final String DELETE_ERROR_MSG =
+        "Cannot delete the selected records from the table.";
+    private static final String COMMIT_ERROR_MSG =
+        "Cannot commit table changes.";
 } // end RDMS

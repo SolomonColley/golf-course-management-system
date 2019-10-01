@@ -9,6 +9,7 @@ import gcms.forms.panels.*;
 import gcms.rdms.RDMS;
 import java.awt.Dimension;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -50,12 +51,12 @@ public class MainForm extends javax.swing.JFrame {
         versionLabel = new javax.swing.JLabel();
         gcmsScrollPane = new javax.swing.JScrollPane();
         gcmsTable = new javax.swing.JTable();
-        selectTableLabel = new javax.swing.JLabel();
         tableComboBox = new javax.swing.JComboBox<>();
         createBtn = new javax.swing.JButton();
-        commitChangesBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
-        refreshViewBtn = new javax.swing.JButton();
+        readBtn = new javax.swing.JButton();
+        newRowBtn = new javax.swing.JButton();
+        updateBtn = new javax.swing.JButton();
         mainMenuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         exitMenuItem = new javax.swing.JMenuItem();
@@ -81,9 +82,7 @@ public class MainForm extends javax.swing.JFrame {
         ));
         gcmsScrollPane.setViewportView(gcmsTable);
 
-        selectTableLabel.setText("Select a table");
-
-        tableComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Employees", "Members", "Purchase", "Rates", "JobList", "Calendar", "PurchaseLine", "EmplSchedule", "TeeSchedule", "TeeTimes" }));
+        tableComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a table...", "Employees", "Members", "Purchase", "Rates", "JobList", "Calendar", "PurchaseLine", "EmplSchedule", "TeeSchedule", "TeeTimes" }));
         tableComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tableComboBoxActionPerformed(evt);
@@ -97,13 +96,6 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
-        commitChangesBtn.setText("Commit Changes");
-        commitChangesBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                commitChangesBtnActionPerformed(evt);
-            }
-        });
-
         deleteBtn.setText("Delete");
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,12 +103,21 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
-        refreshViewBtn.setText("Refresh View");
-        refreshViewBtn.addActionListener(new java.awt.event.ActionListener() {
+        readBtn.setText("Read");
+        readBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshViewBtnActionPerformed(evt);
+                readBtnActionPerformed(evt);
             }
         });
+
+        newRowBtn.setText("New Row");
+        newRowBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newRowBtnActionPerformed(evt);
+            }
+        });
+
+        updateBtn.setText("Update");
 
         javax.swing.GroupLayout mainFormPanelLayout = new javax.swing.GroupLayout(mainFormPanel);
         mainFormPanel.setLayout(mainFormPanelLayout);
@@ -129,18 +130,18 @@ public class MainForm extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainFormPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(versionLabel))
-                    .addGroup(mainFormPanelLayout.createSequentialGroup()
-                        .addComponent(selectTableLabel)
-                        .addGap(18, 18, 18)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainFormPanelLayout.createSequentialGroup()
                         .addComponent(tableComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(newRowBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(createBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(deleteBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(refreshViewBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(commitChangesBtn)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(readBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(updateBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(deleteBtn)))
                 .addContainerGap())
         );
         mainFormPanelLayout.setVerticalGroup(
@@ -148,14 +149,14 @@ public class MainForm extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainFormPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(mainFormPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(selectTableLabel)
                     .addComponent(tableComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(createBtn)
-                    .addComponent(commitChangesBtn)
                     .addComponent(deleteBtn)
-                    .addComponent(refreshViewBtn))
+                    .addComponent(readBtn)
+                    .addComponent(newRowBtn)
+                    .addComponent(updateBtn)
+                    .addComponent(createBtn))
                 .addGap(18, 18, 18)
-                .addComponent(gcmsScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
+                .addComponent(gcmsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(versionLabel)
                 .addContainerGap())
@@ -231,21 +232,35 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
     private void tableComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tableComboBoxActionPerformed
-        // read the selected db table's records into the table
-        gcmsTable.setName((String) tableComboBox.getSelectedItem());
-        RDMS.read(tableComboBox.getSelectedItem(), gcmsTable);
+        // read the selected database table's records into the table
+        if (tableComboBox.getSelectedIndex() != 0) {
+            gcmsTable.setName((String) tableComboBox.getSelectedItem());
+            RDMS.read(tableComboBox.getSelectedItem(), gcmsTable);
+        } // end if-else
     }//GEN-LAST:event_tableComboBoxActionPerformed
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
-        // add an empty row to the bottom of the table
-        DefaultTableModel tableModel = (DefaultTableModel) gcmsTable.getModel();
-        tableModel.addRow(new Object[] {});
+        // prompts the user to confirm the create action
+        int reply = JOptionPane.showConfirmDialog(null, CREATE_CONFIRM_MSG,
+            "Dialog", JOptionPane.YES_NO_OPTION);
+        
+        // insert the selected records in the table to the db
+        if (reply == JOptionPane.YES_OPTION) {
+            gcmsTable.setName((String) tableComboBox.getSelectedItem());
+            RDMS.create(tableComboBox.getSelectedItem().toString(), gcmsTable);
+        } // end if-else
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        // delete any and all selected rows from the table
-        gcmsTable.setName((String) tableComboBox.getSelectedItem());
-        RDMS.delete(tableComboBox.getSelectedItem(), gcmsTable);
+        // prompts the user to confirm the delete action
+        int reply = JOptionPane.showConfirmDialog(null, DELETE_CONFIRM_MSG,
+            "Dialog", JOptionPane.YES_NO_OPTION);
+
+        // delete any and all selected records from the table
+        if (reply == JOptionPane.YES_NO_OPTION) {
+            gcmsTable.setName((String) tableComboBox.getSelectedItem());
+            RDMS.delete(tableComboBox.getSelectedItem(), gcmsTable);
+        } // end if-else
         /*
         int[] rows = gcmsTable.getSelectedRows();
         DefaultTableModel tableModel = (DefaultTableModel) gcmsTable.getModel();
@@ -257,15 +272,19 @@ public class MainForm extends javax.swing.JFrame {
         */
     }//GEN-LAST:event_deleteBtnActionPerformed
 
-    private void refreshViewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshViewBtnActionPerformed
-        // read the selected db table's records into the table
-        gcmsTable.setName((String) tableComboBox.getSelectedItem());
-        RDMS.read(tableComboBox.getSelectedItem(), gcmsTable);
-    }//GEN-LAST:event_refreshViewBtnActionPerformed
+    private void readBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_readBtnActionPerformed
+        // read the selected database table's records into the table
+        if (tableComboBox.getSelectedIndex() != 0) {
+            gcmsTable.setName((String) tableComboBox.getSelectedItem());
+            RDMS.read(tableComboBox.getSelectedItem(), gcmsTable);
+        } // end if-else
+    }//GEN-LAST:event_readBtnActionPerformed
 
-    private void commitChangesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commitChangesBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_commitChangesBtnActionPerformed
+    private void newRowBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newRowBtnActionPerformed
+        // add an empty row to the end of the table
+        DefaultTableModel tableModel = (DefaultTableModel) gcmsTable.getModel();
+        tableModel.addRow(new Object[] {});
+    }//GEN-LAST:event_newRowBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -304,7 +323,6 @@ public class MainForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
-    private javax.swing.JButton commitChangesBtn;
     private javax.swing.JButton createBtn;
     private javax.swing.JMenu dataMenu;
     private javax.swing.JButton deleteBtn;
@@ -315,9 +333,10 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenu helpMenu;
     private javax.swing.JPanel mainFormPanel;
     private javax.swing.JMenuBar mainMenuBar;
-    private javax.swing.JButton refreshViewBtn;
-    private javax.swing.JLabel selectTableLabel;
+    private javax.swing.JButton newRowBtn;
+    private javax.swing.JButton readBtn;
     private javax.swing.JComboBox<String> tableComboBox;
+    private javax.swing.JButton updateBtn;
     private javax.swing.JLabel versionLabel;
     // End of variables declaration//GEN-END:variables
 
@@ -325,5 +344,9 @@ public class MainForm extends javax.swing.JFrame {
     // JFrames and JPanels used in MVC system structure
     private JFrame AboutForm;
     private JPanel AboutPanel;
+    private static final String CREATE_CONFIRM_MSG =
+        "Are you sure you want to create the selected record(s)?";
+    private static final String DELETE_CONFIRM_MSG =
+        "Are you sure you want to delete the selected record(s)?";
     // End of additional variables declaration
 }

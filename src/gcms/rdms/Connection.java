@@ -26,14 +26,6 @@ import java.sql.SQLException;
  * @version 1.0
  */
 public class Connection {
-    private static java.sql.Connection conn;
-    private static final String CONNECT_ERROR_MSG =
-            "Could not connect to the database.";
-    private static final String DISCONNECT_ERROR_MSG =
-            "Could not disconnect from the database.";
-    private static final String IS_VALID_ERROR_MSG =
-            "Could not determine the validity of the database connection.";
-    
     /**
      * Connects to the database specified by the URL.
      * @param url the URL (file path) to the database
@@ -97,4 +89,12 @@ public class Connection {
     public static java.sql.Connection getConnection() {
         return conn;
     } // end getConnection
+    
+    private static java.sql.Connection conn;
+    private static final String CONNECT_ERROR_MSG =
+        "Could not connect to the database.";
+    private static final String DISCONNECT_ERROR_MSG =
+        "Could not disconnect from the database.";
+    private static final String IS_VALID_ERROR_MSG =
+        "Could not determine the validity of the database connection.";
 } // end Connection
