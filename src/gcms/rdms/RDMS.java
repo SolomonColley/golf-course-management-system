@@ -122,7 +122,17 @@ public class RDMS {
             // for the number of selected rows, remove the selected rows from the database
             for (int i = 0; i < selectedRowCount; i++) {
                 selectedRowIDs[i] = tableModel.getValueAt(selectedRowIndices[i], 0);
-                sql = "DELETE FROM " + dbTable + " WHERE " + colIDName + " = " + selectedRowIDs[i];
+                
+                // if the selected row id is a string, format sql query as such
+                // else use base object for sql query
+                if (isString(selectedRowIDs[i]))
+                    sql = "DELETE FROM " + dbTable + " WHERE " + colIDName
+                            + " = '" + selectedRowIDs[i].toString() + "'";
+                else
+                    sql = "DELETE FROM " + dbTable + " WHERE " + colIDName
+                            + " = " + selectedRowIDs[i]; // end if-else
+                
+                // execute the query
                 statement.executeUpdate(sql);
             } // end for
         } catch (SQLException ex) {
@@ -133,11 +143,16 @@ public class RDMS {
         // disconnect from the database
         Connection.disconnect();
     } // end delete
+    
+    private static boolean isString(Object obj) {
+        return obj instanceof String;
+    } // end isString
 
     /**
      * Operation CREATE of the GCMS's CRUD design. Connects to the internal
      * database, selects the user-specified table, and inserts the specified
      * rows into the database table.
+     * @param dbTable the user-selected database table
      * @param formTable the form's table with selected records to be inserted
      */
     public static void create(String dbTable, JTable formTable) {        

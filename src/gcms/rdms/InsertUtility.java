@@ -62,6 +62,12 @@ public class InsertUtility {
         Connection.disconnect();
     } // end insertToCalendar
     
+    /**
+     * Operation INSERT Calendar of the GCMS's CRUD design. Connects to the
+     * internal database, selects the EmplSchedule table, and inserts the specified
+     * rows into the database table.
+     * @param formTable the form's table with selected records to be inserted
+     */
     public static void insertToEmplSchedule(JTable formTable) {
         DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
         int selectedRowCount = formTable.getSelectedRowCount();
@@ -84,7 +90,6 @@ public class InsertUtility {
                 pstmt.setInt(1, dayValue);
                 pstmt.setString(2, jobValue);
                 pstmt.setInt(3, emplID);
-                
                 pstmt.executeUpdate();
             } // end for
         } catch (SQLException ex) {
@@ -100,9 +105,39 @@ public class InsertUtility {
         
     }
     
+    /**
+     * Operation INSERT Calendar of the GCMS's CRUD design. Connects to the
+     * internal database, selects the JobList table, and inserts the specified
+     * rows into the database table.
+     * @param formTable the form's table with selected records to be inserted
+     */
     public static void insertToJobList(JTable formTable) {
+        DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
+        int selectedRowCount = formTable.getSelectedRowCount();
+        int[] selectedRowIndices = formTable.getSelectedRows();
+        String jobValue;
+        String sql = "INSERT INTO JobList(Job) VALUES(?)";
         
-    }
+        // connect to the database
+        Connection.connect(CONNECTION_STR);
+        
+        try (PreparedStatement pstmt = Connection.getConnection().prepareStatement(sql)) {
+            for (int i = 0; i < selectedRowCount; i++) {
+                // get the value in the Job column at the selected row index
+                jobValue = String.valueOf(tableModel.getValueAt(selectedRowIndices[i], 0).toString());
+                
+                // prepare the value for insertion and execute the query
+                pstmt.setString(1, jobValue);
+                pstmt.executeUpdate();
+            } // end for
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(new JFrame(), CREATE_ERROR_MSG,
+                "Dialog", JOptionPane.ERROR_MESSAGE);
+        } // end try-catch
+        
+        // disconnect from the database
+        Connection.disconnect();
+    } // end insertToJobList
     
     public static void insertToMembers(JTable formTable) {
         
