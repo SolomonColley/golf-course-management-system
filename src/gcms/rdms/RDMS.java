@@ -143,10 +143,6 @@ public class RDMS {
         // disconnect from the database
         Connection.disconnect();
     } // end delete
-    
-    private static boolean isString(Object obj) {
-        return obj instanceof String;
-    } // end isString
 
     /**
      * Operation CREATE of the GCMS's CRUD design. Connects to the internal
@@ -191,6 +187,14 @@ public class RDMS {
                 break;
         } // end switch-case
     } // end insert
+    
+    /**
+     * Determines if an object is a String or not.
+     * @return true if the object is a String, or false if not.
+     */
+    private static boolean isString(Object obj) {
+        return obj instanceof String;
+    } // end isString
     
     private static final String CONNECTION_STR =
         "jdbc:sqlite:data/gcms_db.db";
