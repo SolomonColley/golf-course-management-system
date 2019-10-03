@@ -108,8 +108,54 @@ public class InsertUtility {
      * @param formTable the form's table with selected records to be inserted
      */
     public static void insertToEmployees(JTable formTable) {
+        DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
+        int selectedRowCount = formTable.getSelectedRowCount();
+        int[] selectedRowIndices = formTable.getSelectedRows();
+        int empIDValue;
+        String lNameValue, fNameValue, streetValue, cityValue, stateValue, emailValue, phoneValue;
+        int zipValue;
+        double payRateValue;
+        String sql = "INSERT INTO Employees(EmplID, LName, FName, Street, City, State, Zip, Email, Phone, PayRate) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
-    }
+        // connect to the database
+        Connection.connect(CONNECTION_STR);
+        
+        try (PreparedStatement pstmt = Connection.getConnection().prepareStatement(sql)) {
+            for (int i = 0; i < selectedRowCount; i++) {
+                /* get the value in the EmplID, LName, FName, Street, City, State,
+                Zip, Email, Phone, and PayRate columns at the selected row index */
+                empIDValue = Integer.parseInt(tableModel.getValueAt(selectedRowIndices[i], 0).toString());
+                lNameValue = String.valueOf(tableModel.getValueAt(selectedRowIndices[i], 1));
+                fNameValue = String.valueOf(tableModel.getValueAt(selectedRowIndices[i], 2));
+                streetValue = String.valueOf(tableModel.getValueAt(selectedRowIndices[i], 3));
+                cityValue = String.valueOf(tableModel.getValueAt(selectedRowIndices[i], 4));
+                stateValue = String.valueOf(tableModel.getValueAt(selectedRowIndices[i], 5));
+                zipValue = Integer.parseInt(tableModel.getValueAt(selectedRowIndices[i], 6).toString());
+                emailValue = String.valueOf(tableModel.getValueAt(selectedRowIndices[i], 7));
+                phoneValue = String.valueOf(tableModel.getValueAt(selectedRowIndices[i], 8));
+                payRateValue = Double.parseDouble(tableModel.getValueAt(selectedRowIndices[i], 9).toString());
+                
+                // prepare the values for insertion and execute the query
+                pstmt.setInt(1, empIDValue);
+                pstmt.setString(2, lNameValue);
+                pstmt.setString(3, fNameValue);
+                pstmt.setString(4, streetValue);
+                pstmt.setString(5, cityValue);
+                pstmt.setString(6, stateValue);
+                pstmt.setInt(7, zipValue);
+                pstmt.setString(8, emailValue);
+                pstmt.setString(9, phoneValue);
+                pstmt.setDouble(10, payRateValue);
+                pstmt.executeUpdate();
+            } // end for
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(new JFrame(), CREATE_ERROR_MSG,
+                "Dialog", JOptionPane.ERROR_MESSAGE);
+        } // end try-catch
+        
+        // disconnect from the database
+        Connection.disconnect();
+    } // end insertToEmployees
     
     /**
      * Operation INSERT JobList of the GCMS's CRUD design. Connects to the
@@ -152,8 +198,53 @@ public class InsertUtility {
      * @param formTable the form's table with selected records to be inserted
      */
     public static void insertToMembers(JTable formTable) {
+        DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
+        int selectedRowCount = formTable.getSelectedRowCount();
+        int[] selectedRowIndices = formTable.getSelectedRows();
+        int memIDValue;
+        String lNameValue, fNameValue, streetValue, cityValue, stateValue, emailValue, phoneValue;
+        int zipValue, expDateValue;
+        String sql = "INSERT INTO Members(MemberID, LName, FName, Street, City, State, Zip, Email, Phone, ExpDate) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
-    }
+        // connect to the database
+        Connection.connect(CONNECTION_STR);
+        
+        try (PreparedStatement pstmt = Connection.getConnection().prepareStatement(sql)) {
+            for (int i = 0; i < selectedRowCount; i++) {
+                /* get the value in the EmplID, LName, FName, Street, City, State,
+                Zip, Email, Phone, and ExpDate columns at the selected row index */
+                memIDValue = Integer.parseInt(tableModel.getValueAt(selectedRowIndices[i], 0).toString());
+                lNameValue = String.valueOf(tableModel.getValueAt(selectedRowIndices[i], 1));
+                fNameValue = String.valueOf(tableModel.getValueAt(selectedRowIndices[i], 2));
+                streetValue = String.valueOf(tableModel.getValueAt(selectedRowIndices[i], 3));
+                cityValue = String.valueOf(tableModel.getValueAt(selectedRowIndices[i], 4));
+                stateValue = String.valueOf(tableModel.getValueAt(selectedRowIndices[i], 5));
+                zipValue = Integer.parseInt(tableModel.getValueAt(selectedRowIndices[i], 6).toString());
+                emailValue = String.valueOf(tableModel.getValueAt(selectedRowIndices[i], 7));
+                phoneValue = String.valueOf(tableModel.getValueAt(selectedRowIndices[i], 8));
+                expDateValue = Integer.valueOf(tableModel.getValueAt(selectedRowIndices[i], 9).toString());
+                
+                // prepare the values for insertion and execute the query
+                pstmt.setInt(1, memIDValue);
+                pstmt.setString(2, lNameValue);
+                pstmt.setString(3, fNameValue);
+                pstmt.setString(4, streetValue);
+                pstmt.setString(5, cityValue);
+                pstmt.setString(5, stateValue);
+                pstmt.setInt(6, zipValue);
+                pstmt.setString(7, emailValue);
+                pstmt.setString(8, phoneValue);
+                pstmt.setInt(9, expDateValue);
+                pstmt.executeUpdate();
+            } // end for
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(new JFrame(), CREATE_ERROR_MSG,
+                "Dialog", JOptionPane.ERROR_MESSAGE);
+        } // end try-catch
+        
+        // disconnect from the database
+        Connection.disconnect();
+    } // end insertToMembers
     
     /**
      * Operation INSERT Purchase of the GCMS's CRUD design. Connects to the
