@@ -27,54 +27,32 @@ import javax.swing.table.DefaultTableModel;
  * @since 9/23/2019
  * @version 1.0
  */
-public class InsertUtility {
+public class UpdateUtility {
     /**
-     * Operation INSERT Calendar of the GCMS's CRUD design. Connects to the
-     * internal database, selects the Calendar table, and inserts the specified
+     * Operation UPDATE Calendar of the GCMS's CRUD design. Connects to the
+     * internal database, selects the Calendar table, and updates the specified
      * rows into the database table.
      * @param formTable the form's table with selected records to be inserted
      */
-    public static void insertToCalendar(JTable formTable) {
-        DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
-        int selectedRowCount = formTable.getSelectedRowCount();
-        int[] selectedRowIndices = formTable.getSelectedRows();
-        int dayValue;
-        String sql = "INSERT INTO Calendar(Day) VALUES(?)";
-        
-        // connect to the database
-        Connection.connect(CONNECTION_STR);
-        
-        try (PreparedStatement pstmt = Connection.getConnection().prepareStatement(sql)) {
-            for (int i = 0; i < selectedRowCount; i++) {
-                // get the value in the day column at the selected row index
-                dayValue = Integer.parseInt(tableModel.getValueAt(selectedRowIndices[i], 0).toString());
-                
-                // prepare the value for insertion and execute the query
-                pstmt.setInt(1, dayValue);
-                pstmt.executeUpdate();
-            } // end for
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(new JFrame(), CREATE_ERROR_MSG,
-                "Dialog", JOptionPane.ERROR_MESSAGE);
-        } // end try-catch
-
-        // disconnect from the database
-        Connection.disconnect();
-    } // end insertToCalendar
+    public static void updateCalendar(JTable formTable) {
+        // cannot update a table of key values
+        JOptionPane.showMessageDialog(new JFrame(), UPDATE_ERROR_MSG,
+            "Dialog", JOptionPane.ERROR_MESSAGE);
+    } // end updateCalendar
     
     /**
-     * Operation INSERT EmplSchedule of the GCMS's CRUD design. Connects to the
+     * Operation UPDATE EmplSchedule of the GCMS's CRUD design. Connects to the
      * internal database, selects the EmplSchedule table, and updates the specified
      * rows into the database table.
      * @param formTable the form's table with selected records to be inserted
      */
-    public static void insertToEmplSchedule(JTable formTable) {
+    public static void updateEmplSchedule(JTable formTable) {
         DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
         int selectedRowCount = formTable.getSelectedRowCount();
         int[] selectedRowIndices = formTable.getSelectedRows();
-        int dayValue, emplIDValue;
+        int dayValue, emplID;
         String jobValue;
-        String sql = "INSERT INTO EmplSchedule(Day, Job, EmplID) VALUES(?, ?, ?)";
+        String sql = "UPDATE EmplSchedule SET Job = ?, EmplID = ? WHERE Day = ?";
         
         // connect to the database
         Connection.connect(CONNECTION_STR);
@@ -84,91 +62,69 @@ public class InsertUtility {
                 // get the value in the Day, Job, and EmpID columns at the selected row index
                 dayValue = Integer.parseInt(tableModel.getValueAt(selectedRowIndices[i], 0).toString());
                 jobValue = String.valueOf(tableModel.getValueAt(selectedRowIndices[i], 1));
-                emplIDValue = Integer.parseInt(tableModel.getValueAt(selectedRowIndices[i], 2).toString());
+                emplID = Integer.parseInt(tableModel.getValueAt(selectedRowIndices[i], 2).toString());
                 
-                // prepare the values for insertion and execute the query
-                pstmt.setInt(1, dayValue);
-                pstmt.setString(2, jobValue);
-                pstmt.setInt(3, emplIDValue);
-                pstmt.executeUpdate();
-            } // end for
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(new JFrame(), CREATE_ERROR_MSG,
-                "Dialog", JOptionPane.ERROR_MESSAGE);
-        } // end try-catch
-        
-        // disconnect from the database
-        Connection.disconnect();
-    } // end insertToEmplSchedule
-    
-    /**
-     * Operation INSERT Employees of the GCMS's CRUD design. Connects to the
-     * internal database, selects the Employees table, and inserts the specified
-     * rows into the database table.
-     * @param formTable the form's table with selected records to be inserted
-     */
-    public static void insertToEmployees(JTable formTable) {
-        
-    }
-    
-    /**
-     * Operation INSERT JobList of the GCMS's CRUD design. Connects to the
-     * internal database, selects the JobList table, and inserts the specified
-     * rows into the database table.
-     * @param formTable the form's table with selected records to be inserted
-     */
-    public static void insertToJobList(JTable formTable) {
-        DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
-        int selectedRowCount = formTable.getSelectedRowCount();
-        int[] selectedRowIndices = formTable.getSelectedRows();
-        String jobValue;
-        String sql = "INSERT INTO JobList(Job) VALUES(?)";
-        
-        // connect to the database
-        Connection.connect(CONNECTION_STR);
-        
-        try (PreparedStatement pstmt = Connection.getConnection().prepareStatement(sql)) {
-            for (int i = 0; i < selectedRowCount; i++) {
-                // get the value in the Job column at the selected row index
-                jobValue = String.valueOf(tableModel.getValueAt(selectedRowIndices[i], 0));
-                
-                // prepare the value for insertion and execute the query
+                // prepare the values for updating and execute the query
                 pstmt.setString(1, jobValue);
+                pstmt.setInt(2, emplID);
+                pstmt.setInt(3, dayValue);
                 pstmt.executeUpdate();
             } // end for
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(new JFrame(), CREATE_ERROR_MSG,
+            JOptionPane.showMessageDialog(new JFrame(), UPDATE_ERROR_MSG,
                 "Dialog", JOptionPane.ERROR_MESSAGE);
         } // end try-catch
         
         // disconnect from the database
         Connection.disconnect();
-    } // end insertToJobList
+    } // end updateEmplSchedule
     
     /**
-     * Operation INSERT Members of the GCMS's CRUD design. Connects to the
-     * internal database, selects the Members table, and inserts the specified
+     * Operation UPDATE Employees of the GCMS's CRUD design. Connects to the
+     * internal database, selects the Employees table, and updates the specified
      * rows into the database table.
      * @param formTable the form's table with selected records to be inserted
      */
-    public static void insertToMembers(JTable formTable) {
+    public static void updateEmployees(JTable formTable) {
         
     }
     
     /**
-     * Operation INSERT Purchase of the GCMS's CRUD design. Connects to the
-     * internal database, selects the Purchase table, and inserts the specified
+     * Operation UPDATE JobList of the GCMS's CRUD design. Connects to the
+     * internal database, selects the JobList table, and updates the specified
      * rows into the database table.
      * @param formTable the form's table with selected records to be inserted
      */
-    public static void insertToPurchase(JTable formTable) {
+    public static void updateJobList(JTable formTable) {
+        // cannot update a table of key values
+        JOptionPane.showMessageDialog(new JFrame(), UPDATE_ERROR_MSG,
+            "Dialog", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    /**
+     * Operation UPDATE Members of the GCMS's CRUD design. Connects to the
+     * internal database, selects the Members table, and updates the specified
+     * rows into the database table.
+     * @param formTable the form's table with selected records to be inserted
+     */
+    public static void updateMembers(JTable formTable) {
+        
+    }
+    
+    /**
+     * Operation UPDATE Purchase of the GCMS's CRUD design. Connects to the
+     * internal database, selects the Purchase table, and updates the specified
+     * rows into the database table.
+     * @param formTable the form's table with selected records to be inserted
+     */
+    public static void updatePurchase(JTable formTable) {
         DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
         int selectedRowCount = formTable.getSelectedRowCount();
         int[] selectedRowIndices = formTable.getSelectedRows();
         int transNumValue, dayValue, memIDValue;
         String lNameValue, fNameValue;
         double totalAmountValue;
-        String sql = "INSERT INTO Purchase(TransNum, Day, MemberID, LName, FName, TotalAmt) VALUES(?, ?, ?, ?, ?, ?)";
+        String sql = "UPDATE Purchase SET Day = ?, MemberID = ?, LName = ?, FName = ?, TotalAmt = ? WHERE TransNum = ?";
         
         // connect to the database
         Connection.connect(CONNECTION_STR);
@@ -184,66 +140,64 @@ public class InsertUtility {
                 fNameValue = String.valueOf(tableModel.getValueAt(selectedRowIndices[i], 4));
                 totalAmountValue = Double.parseDouble(tableModel.getValueAt(selectedRowIndices[i], 5).toString());
                 
-                // prepare the values for insertion and execute the query
-                pstmt.setInt(1, transNumValue);
-                pstmt.setInt(2, dayValue);
-                pstmt.setInt(3, memIDValue);
-                pstmt.setString(4, lNameValue);
-                pstmt.setString(5, fNameValue);
-                pstmt.setDouble(6, totalAmountValue);
+                // prepare the values for updating and execute the query
+                pstmt.setInt(1, dayValue);
+                pstmt.setInt(2, memIDValue);
+                pstmt.setString(3, lNameValue);
+                pstmt.setString(4, fNameValue);
+                pstmt.setDouble(5, totalAmountValue);
+                pstmt.setInt(6, transNumValue);
                 pstmt.executeUpdate();
             } // end for
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(new JFrame(), CREATE_ERROR_MSG,
+            JOptionPane.showMessageDialog(new JFrame(), UPDATE_ERROR_MSG,
                 "Dialog", JOptionPane.ERROR_MESSAGE);
         } // end try-catch
         
         // disconnect from the database
         Connection.disconnect();
-    } // end insertToPurchase
+    } // end updatePurchase
     
     /**
-     * Operation INSERT PurchaseLine of the GCMS's CRUD design. Connects to the
-     * internal database, selects the PurchaseLine table, and inserts the specified
+     * Operation UPDATE PurchaseLine of the GCMS's CRUD design. Connects to the
+     * internal database, selects the PurchaseLine table, and updates the specified
      * rows into the database table.
      * @param formTable the form's table with selected records to be inserted
      */
-    public static void insertToPurchaseLine(JTable formTable) {
+    public static void updatePurchaseLine(JTable formTable) {
         DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
         int selectedRowCount = formTable.getSelectedRowCount();
         int[] selectedRowIndices = formTable.getSelectedRows();
         int transNumValue, purchLineNumValue;
         String itemValue;
         int quantityValue;
-        String sql = "INSERT INTO PurchaseLine(TransNum, PurchLineNum, Item, Qty) VALUES(?, ?, ?, ?)";
+        String sql = "UPDATE PurchaseLine SET TransNum = ?, Item = ?, Qty = ? WHERE PurchLineNum = ?";
         
         // connect to the database
         Connection.connect(CONNECTION_STR);
         
         try (PreparedStatement pstmt = Connection.getConnection().prepareStatement(sql)) {
-            /* get the values in the TransNum, PurchaseLineNum, Item, and Qty
-            columns at the selected row index */
             for (int i = 0; i < selectedRowCount; i++) {
                 transNumValue = Integer.parseInt(tableModel.getValueAt(selectedRowIndices[i], 0).toString());
                 purchLineNumValue = Integer.parseInt(tableModel.getValueAt(selectedRowIndices[i], 1).toString());
                 itemValue = String.valueOf(tableModel.getValueAt(selectedRowIndices[i], 2));
                 quantityValue = Integer.parseInt(tableModel.getValueAt(selectedRowIndices[i], 3).toString());
                 
-                // prepare the values for insertion and execute the query
+                // prepare the values for updating and execute the query
                 pstmt.setInt(1, transNumValue);
-                pstmt.setInt(2, purchLineNumValue);
-                pstmt.setString(3, itemValue);
-                pstmt.setInt(4, quantityValue);
+                pstmt.setString(2, itemValue);
+                pstmt.setInt(3, quantityValue);
+                pstmt.setInt(4, purchLineNumValue);
                 pstmt.executeUpdate();
             } // end for
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(new JFrame(), CREATE_ERROR_MSG,
+            JOptionPane.showMessageDialog(new JFrame(), UPDATE_ERROR_MSG,
                 "Dialog", JOptionPane.ERROR_MESSAGE);
         } // end try-catch
         
         // disconnect from the database
         Connection.disconnect();
-    } // end insertToPurchaseLine
+    } // end updatePurchaseLine
     
     /**
      * Operation UPDATE Rates of the GCMS's CRUD design. Connects to the
@@ -251,13 +205,13 @@ public class InsertUtility {
      * rows into the database table.
      * @param formTable the form's table with selected records to be inserted
      */
-    public static void insertToRates(JTable formTable) {
+    public static void updateRates(JTable formTable) {
         DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
         int selectedRowCount = formTable.getSelectedRowCount();
         int[] selectedRowIndices = formTable.getSelectedRows();
         String itemValue;
         double priceValue;
-        String sql = "INSERT INTO Rates(Item, Price) VALUES(?, ?)";
+        String sql = "UPDATE Rates SET Price = ? WHERE Item = ?";
         
         // connect to the database
         Connection.connect(CONNECTION_STR);
@@ -268,33 +222,33 @@ public class InsertUtility {
                 itemValue = String.valueOf(tableModel.getValueAt(selectedRowIndices[i], 0));
                 priceValue = Double.valueOf(tableModel.getValueAt(selectedRowIndices[i], 1).toString());
                 
-                // prepare the values for insertion and execute the query
-                pstmt.setString(1, itemValue);
-                pstmt.setDouble(2, priceValue);
+                // prepare the values for updating and execute the query
+                pstmt.setDouble(1, priceValue);
+                pstmt.setString(2, itemValue);
                 pstmt.executeUpdate();
             } // end for
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(new JFrame(), CREATE_ERROR_MSG,
+            JOptionPane.showMessageDialog(new JFrame(), UPDATE_ERROR_MSG,
                 "Dialog", JOptionPane.ERROR_MESSAGE);
         } // end try-catch
         
         // disconnect from the database
         Connection.disconnect();
-    } // end insertToRates
+    } // end updateRates
     
     /**
-     * Operation INSERT TeeSchedule of the GCMS's CRUD design. Connects to the
-     * internal database, selects the TeeSchedule table, and inserts the specified
+     * Operation UPDATE TeeSchedule of the GCMS's CRUD design. Connects to the
+     * internal database, selects the TeeSchedule table, and updates the specified
      * rows into the database table.
      * @param formTable the form's table with selected records to be inserted
      */
-    public static void insertToTeeSchedule(JTable formTable) {
+    public static void updateTeeSchedule(JTable formTable) {
         DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
         int selectedRowCount = formTable.getSelectedRowCount();
         int[] selectedRowIndices = formTable.getSelectedRows();
         int dayValue, timeValue, memIDValue;
         String lNameValue, fNameValue;
-        String sql = "INSERT INTO TeeSchedule(Day, Time, MemberID, LName, FName) VALUES(?, ?, ?, ?, ?)";
+        String sql = "UPDATE TeeSchedule SET Time = ?, MemberID = ?, LName = ?, FName = ? WHERE Day = ?";
         
         // connect to the database
         Connection.connect(CONNECTION_STR);
@@ -309,59 +263,37 @@ public class InsertUtility {
                 lNameValue = String.valueOf(tableModel.getValueAt(selectedRowIndices[i], 3));
                 fNameValue = String.valueOf(tableModel.getValueAt(selectedRowIndices[i], 4));
                 
-                // prepare the values for insertion and execute the query
-                pstmt.setInt(1, dayValue);
-                pstmt.setInt(2, timeValue);
-                pstmt.setInt(3, memIDValue);
-                pstmt.setString(4, lNameValue);
-                pstmt.setString(5, fNameValue);
+                // prepare the values for updating and execute the query
+                pstmt.setInt(1, timeValue);
+                pstmt.setInt(2, memIDValue);
+                pstmt.setString(3, lNameValue);
+                pstmt.setString(4, fNameValue);
+                pstmt.setInt(5, dayValue);
                 pstmt.executeUpdate();
             } // end for
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(new JFrame(), CREATE_ERROR_MSG,
+            JOptionPane.showMessageDialog(new JFrame(), UPDATE_ERROR_MSG,
                 "Dialog", JOptionPane.ERROR_MESSAGE);
         } // end try-catch
         
         // disconnect from the database
         Connection.disconnect();
-    } // end insertToTeeSchedule
+    } // end updateTeeSchedule
     
     /**
-     * Operation INSERT TeeTimes of the GCMS's CRUD design. Connects to the
-     * internal database, selects the TeeTimes table, and inserts the specified
+     * Operation UPDATE TeeTimes of the GCMS's CRUD design. Connects to the
+     * internal database, selects the TeeTimes table, and updates the specified
      * rows into the database table.
      * @param formTable the form's table with selected records to be inserted
      */
-    public static void insertToTeeTimes(JTable formTable) {
-        DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
-        int selectedRowCount = formTable.getSelectedRowCount();
-        int[] selectedRowIndices = formTable.getSelectedRows();
-        int timeValue;
-        String sql = "INSERT INTO TeeTimes(Time) VALUES(?)";
-        
-        // connect to the database
-        Connection.connect(CONNECTION_STR);
-        
-        try (PreparedStatement pstmt = Connection.getConnection().prepareStatement(sql)) {
-            for (int i = 0; i < selectedRowCount; i++) {
-                // get the values in the Time column at the selected row index
-                timeValue = Integer.parseInt(tableModel.getValueAt(selectedRowIndices[i], 0).toString());
-                
-                // prepare the value for insertion and execute the query
-                pstmt.setInt(1, timeValue);
-                pstmt.executeUpdate();
-            } // end for
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(new JFrame(), CREATE_ERROR_MSG,
-                "Dialog", JOptionPane.ERROR_MESSAGE);
-        } // end try-catch
-        
-        // disconnect from the database
-        Connection.disconnect();
-    } // end insertToTeeTimes
+    public static void updateTeeTimes(JTable formTable) {
+        // cannot update a table of key values
+        JOptionPane.showMessageDialog(new JFrame(), UPDATE_ERROR_MSG,
+            "Dialog", JOptionPane.ERROR_MESSAGE);
+    } // end updateTeeTimes
     
     private static final String CONNECTION_STR =
         "jdbc:sqlite:data/gcms_db.db";
-    private static final String CREATE_ERROR_MSG =
-        "Cannot insert the selected rows into the database.";
-} // end InsertUtility
+    private static final String UPDATE_ERROR_MSG =
+        "Cannot update the selected rows in the database.";
+} // end UpdateUtility

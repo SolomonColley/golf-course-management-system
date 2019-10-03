@@ -118,6 +118,11 @@ public class MainForm extends javax.swing.JFrame {
         });
 
         updateBtn.setText("Update");
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainFormPanelLayout = new javax.swing.GroupLayout(mainFormPanel);
         mainFormPanel.setLayout(mainFormPanelLayout);
@@ -257,19 +262,10 @@ public class MainForm extends javax.swing.JFrame {
             "Dialog", JOptionPane.YES_NO_OPTION);
 
         // delete any and all selected records from the table
-        if (reply == JOptionPane.YES_NO_OPTION) {
+        if (reply == JOptionPane.YES_OPTION) {
             gcmsTable.setName((String) tableComboBox.getSelectedItem());
             RDMS.delete(tableComboBox.getSelectedItem(), gcmsTable);
         } // end if-else
-        /*
-        int[] rows = gcmsTable.getSelectedRows();
-        DefaultTableModel tableModel = (DefaultTableModel) gcmsTable.getModel();
-        
-        for (int row : rows)
-            tableModel.removeRow(gcmsTable.convertRowIndexToModel(row)); // end for-each
-        
-        gcmsTable.clearSelection();
-        */
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void readBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_readBtnActionPerformed
@@ -286,6 +282,18 @@ public class MainForm extends javax.swing.JFrame {
         tableModel.addRow(new Object[] {});
     }//GEN-LAST:event_newRowBtnActionPerformed
 
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+        // prompts the user to confirm the delete action
+        int reply = JOptionPane.showConfirmDialog(null, UPDATE_CONFIRM_MSG,
+            "Dialog", JOptionPane.YES_NO_OPTION);
+
+        // delete any and all selected records from the table
+        if (reply == JOptionPane.YES_OPTION) {
+            gcmsTable.setName((String) tableComboBox.getSelectedItem());
+            RDMS.update(tableComboBox.getSelectedItem().toString(), gcmsTable);
+        } // end if-else
+    }//GEN-LAST:event_updateBtnActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -348,5 +356,7 @@ public class MainForm extends javax.swing.JFrame {
         "Are you sure you want to create the selected record(s)?";
     private static final String DELETE_CONFIRM_MSG =
         "Are you sure you want to delete the selected record(s)?";
+    private static final String UPDATE_CONFIRM_MSG =
+        "Are you sure you want to update the selected record(s)?";
     // End of additional variables declaration
 }

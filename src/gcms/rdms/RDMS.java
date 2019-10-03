@@ -30,6 +30,50 @@ import javax.swing.table.DefaultTableModel;
  * @version 1.0
  */
 public class RDMS {
+        /**
+     * Operation CREATE of the GCMS's CRUD design. Connects to the internal
+     * database, selects the user-specified table, and inserts the specified
+     * rows into the database table.
+     * @param dbTable the user-selected database table
+     * @param formTable the form's table with selected records to be inserted
+     */
+    public static void create(String dbTable, JTable formTable) {        
+        switch (dbTable) {
+            case "Calendar":
+                InsertUtility.insertToCalendar(formTable);
+                break;
+            case "EmplSchedule":
+                InsertUtility.insertToEmplSchedule(formTable);
+                break;
+            case "Employees":
+                InsertUtility.insertToEmployees(formTable);
+                break;
+            case "JobList":
+                InsertUtility.insertToJobList(formTable);
+                break;
+            case "Members":
+                InsertUtility.insertToMembers(formTable);
+                break;
+            case "Purchase":
+                InsertUtility.insertToPurchase(formTable);
+                break;
+            case "PurchaseLine":
+                InsertUtility.insertToPurchaseLine(formTable);
+                break;
+            case "Rates":
+                InsertUtility.insertToRates(formTable);
+                break;
+            case "TeeSchedule":
+                InsertUtility.insertToTeeSchedule(formTable);
+                break;
+            case "TeeTimes":
+                InsertUtility.insertToTeeTimes(formTable);
+                break;
+            default:
+                break;
+        } // end switch-case
+    } // end create
+    
     /**
      * Operation READ of the GCMS's CRUD design. Connects to the internal
      * database, selects a user-specified table, and reads that table's
@@ -80,25 +124,49 @@ public class RDMS {
         } // end try-catch
     } // end read
     
-    /*
-    public static void update(Object dbTable, JTable formTable) {
-        DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
-        String[] colNames = new String[formTable.getColumnCount()];
-        Object[] rowValues = new Object[formTable.getRowCount()];
-        
-        for (int i = 0; i < colNames.length; i++)
-            colNames[i] = formTable.getColumnName(i);
-        
-        Connection.connect(CONNECTION_STR);
-        for (int i = 0; i < formTable.getColumnCount(); i++) {
-            for (int j = 0; j < formTable.getRowCount(); j++) {
-                rowValues[j] = formTable.getValueAt(i, j);
-            } // end for
-            insert(dbTable, colNames, rowValues);
-        }
-        Connection.disconnect();
+    /**
+     * Operation UPDATE of the GCMS's CRUD design. Connects to the internal
+     * database, selects the user-specified table, and updates the specified
+     * rows from the table.
+     * @param dbTable the user-selected database table
+     * @param formTable the form's table with selected records to be deleted
+     */
+    public static void update(String dbTable, JTable formTable) {
+        switch (dbTable) {
+            case "Calendar":
+                UpdateUtility.updateCalendar(formTable);
+                break;
+            case "EmplSchedule":
+                UpdateUtility.updateEmplSchedule(formTable);
+                break;
+            case "Employees":
+                UpdateUtility.updateEmployees(formTable);
+                break;
+            case "JobList":
+                UpdateUtility.updateJobList(formTable);
+                break;
+            case "Members":
+                UpdateUtility.updateMembers(formTable);
+                break;
+            case "Purchase":
+                UpdateUtility.updatePurchase(formTable);
+                break;
+            case "PurchaseLine":
+                UpdateUtility.updatePurchaseLine(formTable);
+                break;
+            case "Rates":
+                UpdateUtility.updateRates(formTable);
+                break;
+            case "TeeSchedule":
+                UpdateUtility.updateTeeSchedule(formTable);
+                break;
+            case "TeeTimes":
+                UpdateUtility.updateTeeTimes(formTable);
+                break;
+            default:
+                break;
+        } // end switch-case
     } // end update
-    */
     
     /**
      * Operation DELETE of the GCMS's CRUD design. Connects to the internal
@@ -143,50 +211,6 @@ public class RDMS {
         // disconnect from the database
         Connection.disconnect();
     } // end delete
-
-    /**
-     * Operation CREATE of the GCMS's CRUD design. Connects to the internal
-     * database, selects the user-specified table, and inserts the specified
-     * rows into the database table.
-     * @param dbTable the user-selected database table
-     * @param formTable the form's table with selected records to be inserted
-     */
-    public static void create(String dbTable, JTable formTable) {        
-        switch (dbTable) {
-            case "Calendar":
-                InsertUtility.insertToCalendar(formTable);
-                break;
-            case "EmplSchedule":
-                InsertUtility.insertToEmplSchedule(formTable);
-                break;
-            case "Employees":
-                InsertUtility.insertToEmployees(formTable);
-                break;
-            case "JobList":
-                InsertUtility.insertToJobList(formTable);
-                break;
-            case "Members":
-                InsertUtility.insertToMembers(formTable);
-                break;
-            case "Purchase":
-                InsertUtility.insertToPurchase(formTable);
-                break;
-            case "PurchaseLine":
-                InsertUtility.insertToPurchaseLine(formTable);
-                break;
-            case "Rates":
-                InsertUtility.insertToRates(formTable);
-                break;
-            case "TeeSchedule":
-                InsertUtility.insertToTeeSchedule(formTable);
-                break;
-            case "TeeTimes":
-                InsertUtility.insertToTeeTimes(formTable);
-                break;
-            default:
-                break;
-        } // end switch-case
-    } // end insert
     
     /**
      * Determines if an object is a String or not.
