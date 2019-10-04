@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gcms.rdms;
+package gcms.rdms.utilities;
 
+import gcms.rdms.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JFrame;
@@ -28,6 +29,13 @@ import javax.swing.table.DefaultTableModel;
  * @version 1.0
  */
 public class UpdateUtility {
+    private static final String CONNECTION_STR =
+        "jdbc:sqlite:data/gcms_db.db";
+    private static final String UPDATE_ERROR_MSG =
+        "Cannot update the selected rows in the database.";
+    private static final String NUMBER_ERROR_MSG =
+        "Cannot parse the values in one or more of the selected row's cells.";
+    
     /**
      * Operation UPDATE Calendar of the GCMS's CRUD design. Connects to the
      * internal database, selects the Calendar table, and updates the specified
@@ -72,6 +80,9 @@ public class UpdateUtility {
             } // end for
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(new JFrame(), UPDATE_ERROR_MSG,
+                "Dialog", JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(new JFrame(), NUMBER_ERROR_MSG,
                 "Dialog", JOptionPane.ERROR_MESSAGE);
         } // end try-catch
         
@@ -129,6 +140,9 @@ public class UpdateUtility {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(new JFrame(), UPDATE_ERROR_MSG,
                 "Dialog", JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(new JFrame(), NUMBER_ERROR_MSG,
+                "Dialog", JOptionPane.ERROR_MESSAGE);
         } // end try-catch
         
         // disconnect from the database
@@ -145,7 +159,7 @@ public class UpdateUtility {
         // cannot update a table of key values
         JOptionPane.showMessageDialog(new JFrame(), UPDATE_ERROR_MSG,
             "Dialog", JOptionPane.ERROR_MESSAGE);
-    }
+    } // end updateJobList
     
     /**
      * Operation UPDATE Members of the GCMS's CRUD design. Connects to the
@@ -196,6 +210,9 @@ public class UpdateUtility {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(new JFrame(), UPDATE_ERROR_MSG,
                 "Dialog", JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(new JFrame(), NUMBER_ERROR_MSG,
+                "Dialog", JOptionPane.ERROR_MESSAGE);
         } // end try-catch
         
         // disconnect from the database
@@ -243,6 +260,9 @@ public class UpdateUtility {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(new JFrame(), UPDATE_ERROR_MSG,
                 "Dialog", JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(new JFrame(), NUMBER_ERROR_MSG,
+                "Dialog", JOptionPane.ERROR_MESSAGE);
         } // end try-catch
         
         // disconnect from the database
@@ -284,6 +304,9 @@ public class UpdateUtility {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(new JFrame(), UPDATE_ERROR_MSG,
                 "Dialog", JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(new JFrame(), NUMBER_ERROR_MSG,
+                "Dialog", JOptionPane.ERROR_MESSAGE);
         } // end try-catch
         
         // disconnect from the database
@@ -320,6 +343,9 @@ public class UpdateUtility {
             } // end for
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(new JFrame(), UPDATE_ERROR_MSG,
+                "Dialog", JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(new JFrame(), NUMBER_ERROR_MSG,
                 "Dialog", JOptionPane.ERROR_MESSAGE);
         } // end try-catch
         
@@ -365,6 +391,9 @@ public class UpdateUtility {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(new JFrame(), UPDATE_ERROR_MSG,
                 "Dialog", JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(new JFrame(), NUMBER_ERROR_MSG,
+                "Dialog", JOptionPane.ERROR_MESSAGE);
         } // end try-catch
         
         // disconnect from the database
@@ -382,9 +411,4 @@ public class UpdateUtility {
         JOptionPane.showMessageDialog(new JFrame(), UPDATE_ERROR_MSG,
             "Dialog", JOptionPane.ERROR_MESSAGE);
     } // end updateTeeTimes
-    
-    private static final String CONNECTION_STR =
-        "jdbc:sqlite:data/gcms_db.db";
-    private static final String UPDATE_ERROR_MSG =
-        "Cannot update the selected rows in the database.";
 } // end UpdateUtility

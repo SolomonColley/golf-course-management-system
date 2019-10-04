@@ -5,6 +5,8 @@
  */
 package gcms.rdms;
 
+import gcms.rdms.utilities.InsertUtility;
+import gcms.rdms.utilities.UpdateUtility;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -30,7 +32,14 @@ import javax.swing.table.DefaultTableModel;
  * @version 1.0
  */
 public class RDMS {
-        /**
+    private static final String CONNECTION_STR =
+        "jdbc:sqlite:data/gcms_db.db";
+    private static final String READ_ERROR_MSG =
+        "Cannot populate the table with records.";
+    private static final String DELETE_ERROR_MSG =
+        "Cannot delete the selected records from the table.";
+    
+    /**
      * Operation CREATE of the GCMS's CRUD design. Connects to the internal
      * database, selects the user-specified table, and inserts the specified
      * rows into the database table.
@@ -219,13 +228,4 @@ public class RDMS {
     private static boolean isString(Object obj) {
         return obj instanceof String;
     } // end isString
-    
-    private static final String CONNECTION_STR =
-        "jdbc:sqlite:data/gcms_db.db";
-    private static final String READ_ERROR_MSG =
-        "Cannot populate the table with records.";
-    private static final String DELETE_ERROR_MSG =
-        "Cannot delete the selected records from the table.";
-    private static final String COMMIT_ERROR_MSG =
-        "Cannot commit table changes.";
 } // end RDMS

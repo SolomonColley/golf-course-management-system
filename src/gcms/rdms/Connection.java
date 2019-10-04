@@ -26,6 +26,14 @@ import java.sql.SQLException;
  * @version 1.0
  */
 public class Connection {
+    private static java.sql.Connection conn;
+    private static final String CONNECT_ERROR_MSG =
+        "Could not connect to the database.";
+    private static final String DISCONNECT_ERROR_MSG =
+        "Could not disconnect from the database.";
+    private static final String IS_VALID_ERROR_MSG =
+        "Could not determine the validity of the database connection.";
+    
     /**
      * Connects to the database specified by the URL.
      * @param url the URL (file path) to the database
@@ -38,10 +46,10 @@ public class Connection {
         try {
             Class.forName("org.sqlite.JDBC");
             conn = DriverManager.getConnection(url);
-        } catch (SQLException e) {
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(new JFrame(), CONNECT_ERROR_MSG,
                 "Dialog", JOptionPane.ERROR_MESSAGE);
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(new JFrame(), "The class was not found.",
                 "Dialog", JOptionPane.ERROR_MESSAGE);
         } // end try-catch
@@ -57,7 +65,7 @@ public class Connection {
         try {
             if (isValidConnection() || conn != null)
                 conn.close();
-        } catch (SQLException e) {
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(new JFrame(), DISCONNECT_ERROR_MSG,
                 "Dialog", JOptionPane.ERROR_MESSAGE);
         } // end try-catch
@@ -74,7 +82,7 @@ public class Connection {
         // if the connection is not valid, display appropriate exception
         try {
             isValid = conn.isValid(0);
-        } catch (SQLException e) {
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(new JFrame(), IS_VALID_ERROR_MSG,
                 "Dialog", JOptionPane.ERROR_MESSAGE);
         } // end try-catch
@@ -89,12 +97,4 @@ public class Connection {
     public static java.sql.Connection getConnection() {
         return conn;
     } // end getConnection
-    
-    private static java.sql.Connection conn;
-    private static final String CONNECT_ERROR_MSG =
-        "Could not connect to the database.";
-    private static final String DISCONNECT_ERROR_MSG =
-        "Could not disconnect from the database.";
-    private static final String IS_VALID_ERROR_MSG =
-        "Could not determine the validity of the database connection.";
 } // end Connection

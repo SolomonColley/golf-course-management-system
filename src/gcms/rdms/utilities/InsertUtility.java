@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gcms.rdms;
+package gcms.rdms.utilities;
 
+import gcms.rdms.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JFrame;
@@ -28,6 +29,13 @@ import javax.swing.table.DefaultTableModel;
  * @version 1.0
  */
 public class InsertUtility {
+    private static final String CONNECTION_STR =
+        "jdbc:sqlite:data/gcms_db.db";
+    private static final String CREATE_ERROR_MSG =
+        "Cannot insert the selected rows into the database.";
+    private static final String NUMBER_ERROR_MSG =
+        "Cannot parse the values in one or more of the selected row's cells.";
+    
     /**
      * Operation INSERT Calendar of the GCMS's CRUD design. Connects to the
      * internal database, selects the Calendar table, and inserts the specified
@@ -55,6 +63,9 @@ public class InsertUtility {
             } // end for
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(new JFrame(), CREATE_ERROR_MSG,
+                "Dialog", JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(new JFrame(), NUMBER_ERROR_MSG,
                 "Dialog", JOptionPane.ERROR_MESSAGE);
         } // end try-catch
 
@@ -94,6 +105,9 @@ public class InsertUtility {
             } // end for
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(new JFrame(), CREATE_ERROR_MSG,
+                "Dialog", JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(new JFrame(), NUMBER_ERROR_MSG,
                 "Dialog", JOptionPane.ERROR_MESSAGE);
         } // end try-catch
         
@@ -150,6 +164,9 @@ public class InsertUtility {
             } // end for
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(new JFrame(), CREATE_ERROR_MSG,
+                "Dialog", JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(new JFrame(), NUMBER_ERROR_MSG,
                 "Dialog", JOptionPane.ERROR_MESSAGE);
         } // end try-catch
         
@@ -240,6 +257,9 @@ public class InsertUtility {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(new JFrame(), CREATE_ERROR_MSG,
                 "Dialog", JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(new JFrame(), NUMBER_ERROR_MSG,
+                "Dialog", JOptionPane.ERROR_MESSAGE);
         } // end try-catch
         
         // disconnect from the database
@@ -287,6 +307,9 @@ public class InsertUtility {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(new JFrame(), CREATE_ERROR_MSG,
                 "Dialog", JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(new JFrame(), NUMBER_ERROR_MSG,
+                "Dialog", JOptionPane.ERROR_MESSAGE);
         } // end try-catch
         
         // disconnect from the database
@@ -330,6 +353,9 @@ public class InsertUtility {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(new JFrame(), CREATE_ERROR_MSG,
                 "Dialog", JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(new JFrame(), NUMBER_ERROR_MSG,
+                "Dialog", JOptionPane.ERROR_MESSAGE);
         } // end try-catch
         
         // disconnect from the database
@@ -366,6 +392,9 @@ public class InsertUtility {
             } // end for
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(new JFrame(), CREATE_ERROR_MSG,
+                "Dialog", JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(new JFrame(), NUMBER_ERROR_MSG,
                 "Dialog", JOptionPane.ERROR_MESSAGE);
         } // end try-catch
         
@@ -411,6 +440,9 @@ public class InsertUtility {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(new JFrame(), CREATE_ERROR_MSG,
                 "Dialog", JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(new JFrame(), NUMBER_ERROR_MSG,
+                "Dialog", JOptionPane.ERROR_MESSAGE);
         } // end try-catch
         
         // disconnect from the database
@@ -445,14 +477,12 @@ public class InsertUtility {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(new JFrame(), CREATE_ERROR_MSG,
                 "Dialog", JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(new JFrame(), NUMBER_ERROR_MSG,
+                "Dialog", JOptionPane.ERROR_MESSAGE);
         } // end try-catch
         
         // disconnect from the database
         Connection.disconnect();
     } // end insertToTeeTimes
-    
-    private static final String CONNECTION_STR =
-        "jdbc:sqlite:data/gcms_db.db";
-    private static final String CREATE_ERROR_MSG =
-        "Cannot insert the selected rows into the database.";
 } // end InsertUtility
