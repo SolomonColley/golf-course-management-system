@@ -367,13 +367,14 @@ public class MainForm extends javax.swing.JFrame {
 
     // Additional variables declaration
     // JFrames and JPanels used in MVC system structure
-    private JFrame AboutForm;
-    private JPanel AboutPanel;
     private static final String CREATE_CONFIRM_MSG =
         "Are you sure you want to create the selected record(s)?";
     private static final String DELETE_CONFIRM_MSG =
         "Are you sure you want to delete the selected record(s)?";
     private static final String UPDATE_CONFIRM_MSG =
         "Are you sure you want to update the selected record(s)?";
+    
+    private JFrame AboutForm;
+    private JPanel AboutPanel;
     // End of additional variables declaration
 } // end MainForm
