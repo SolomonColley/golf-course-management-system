@@ -5,6 +5,7 @@
  */
 package gcms.forms;
 
+import gcms.database.Database;
 import gcms.forms.panels.*;
 import gcms.rdms.RDMS;
 import java.awt.Dimension;
@@ -35,7 +36,7 @@ public class MainForm extends javax.swing.JFrame {
      */
     public MainForm() {
         initComponents();
-        initForms();
+        initFields();
     } // end MainForm
 
     /**
@@ -220,13 +221,25 @@ public class MainForm extends javax.swing.JFrame {
      * Initializes all the JFrames (forms) utilized by the GCMS. JPanels stored
      * in separate files are added to their respective forms.
      */
-    private void initForms() {
+    private void initFields() {
         AboutForm = new JFrame();
         AboutPanel = new AboutPanel();
         AboutForm.setSize(new Dimension(600, 400));
         AboutForm.setTitle("About the GCMS");
         AboutForm.add(AboutPanel);
-    } // end initForms
+        
+        database = new Database();
+    } // end initFields
+    
+    /**
+     * Checks to see if the GCMS database exists in its working directory
+     * 'data'. If it does not exist, then an empty backup of the database
+     * is copied to the 'data' working directory.
+     */
+    private void checkDatabase() {
+        if (database.exists() == false)
+            database.copyBackupDatabase(); // end if-else
+    } // end checkDatabase
     
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         System.exit(0);
@@ -237,6 +250,8 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
     private void tableComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tableComboBoxActionPerformed
+        checkDatabase();
+
         // read the selected database table's records into the table
         if (tableComboBox.getSelectedIndex() != 0) {
             gcmsTable.setName((String) tableComboBox.getSelectedItem());
@@ -245,6 +260,8 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_tableComboBoxActionPerformed
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
+        checkDatabase();
+
         // prompts the user to confirm the create action
         int reply = JOptionPane.showConfirmDialog(null, CREATE_CONFIRM_MSG,
             "Dialog", JOptionPane.YES_NO_OPTION);
@@ -257,6 +274,8 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        checkDatabase();
+
         // prompts the user to confirm the delete action
         int reply = JOptionPane.showConfirmDialog(null, DELETE_CONFIRM_MSG,
             "Dialog", JOptionPane.YES_NO_OPTION);
@@ -269,6 +288,8 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void readBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_readBtnActionPerformed
+        checkDatabase();
+
         // read the selected database table's records into the table
         if (tableComboBox.getSelectedIndex() != 0) {
             gcmsTable.setName((String) tableComboBox.getSelectedItem());
@@ -283,6 +304,8 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_newRowBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+        checkDatabase();
+
         // prompts the user to confirm the delete action
         int reply = JOptionPane.showConfirmDialog(null, UPDATE_CONFIRM_MSG,
             "Dialog", JOptionPane.YES_NO_OPTION);
@@ -359,5 +382,7 @@ public class MainForm extends javax.swing.JFrame {
     
     private JFrame AboutForm;
     private JPanel AboutPanel;
+    
+    private Database database;
     // End of additional variables declaration
 } // end MainForm
