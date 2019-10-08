@@ -29,6 +29,14 @@
             <Property name="text" type="java.lang.String" value="Help"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="howToMenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="How to"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="howToMenuItemActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="aboutMenuItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="About"/>
@@ -215,7 +223,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="newRowBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" value="New Row"/>
+            <Property name="text" type="java.lang.String" value="New row"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newRowBtnActionPerformed"/>

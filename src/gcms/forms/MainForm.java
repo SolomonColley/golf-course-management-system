@@ -63,6 +63,7 @@ public class MainForm extends javax.swing.JFrame {
         exitMenuItem = new javax.swing.JMenuItem();
         dataMenu = new javax.swing.JMenu();
         helpMenu = new javax.swing.JMenu();
+        howToMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -111,7 +112,7 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
-        newRowBtn.setText("New Row");
+        newRowBtn.setText("New row");
         newRowBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newRowBtnActionPerformed(evt);
@@ -185,6 +186,14 @@ public class MainForm extends javax.swing.JFrame {
 
         helpMenu.setText("Help");
 
+        howToMenuItem.setText("How to");
+        howToMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                howToMenuItemActionPerformed(evt);
+            }
+        });
+        helpMenu.add(howToMenuItem);
+
         aboutMenuItem.setText("About");
         aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,6 +236,12 @@ public class MainForm extends javax.swing.JFrame {
         AboutForm.setSize(new Dimension(600, 400));
         AboutForm.setTitle("About the GCMS");
         AboutForm.add(AboutPanel);
+        
+        HowToForm = new JFrame();
+        HowToPanel = new HowToPanel();
+        HowToForm.setSize(new Dimension(600, 400));
+        HowToForm.setTitle("How to Use the GCMS");
+        HowToForm.add(HowToPanel);
         
         database = new Database();
     } // end initFields
@@ -316,6 +331,10 @@ public class MainForm extends javax.swing.JFrame {
             RDMS.update(tableComboBox.getSelectedItem().toString(), gcmsTable);
         } // end if-else
     }//GEN-LAST:event_updateBtnActionPerformed
+
+    private void howToMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_howToMenuItemActionPerformed
+        HowToForm.setVisible(true);
+    }//GEN-LAST:event_howToMenuItemActionPerformed
     
     /**
      * @param args the command line arguments
@@ -362,6 +381,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane gcmsScrollPane;
     private javax.swing.JTable gcmsTable;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JMenuItem howToMenuItem;
     private javax.swing.JPanel mainFormPanel;
     private javax.swing.JMenuBar mainMenuBar;
     private javax.swing.JButton newRowBtn;
@@ -380,8 +400,8 @@ public class MainForm extends javax.swing.JFrame {
     private static final String UPDATE_CONFIRM_MSG =
         "Are you sure you want to update the selected record(s)?";
     
-    private JFrame AboutForm;
-    private JPanel AboutPanel;
+    private JFrame AboutForm, HowToForm;
+    private JPanel AboutPanel, HowToPanel;
     
     private Database database;
     // End of additional variables declaration
