@@ -71,4 +71,12 @@ public class Database {
                 "Dialog", JOptionPane.ERROR_MESSAGE);
         } // end try-catch
     } // end copyBackupDatabase
+    
+    /**
+     * Gets the working database file.
+     * @return the working database file
+     */
+    public File getWorkingFile() {
+        return new File(PATH_TO_WORKING_DB);
+    } // end getFile
 } // end Database

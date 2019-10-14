@@ -9,10 +9,14 @@ import gcms.database.Database;
 import gcms.forms.panels.*;
 import gcms.rdms.RDMS;
 import java.awt.Dimension;
+import java.io.File;
+import java.io.IOException;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import org.apache.commons.io.FileUtils;
 
 /**
  * The Golf Course Management System (GCMS) enables employees of a golf course
@@ -62,6 +66,7 @@ public class MainForm extends javax.swing.JFrame {
         fileMenu = new javax.swing.JMenu();
         exitMenuItem = new javax.swing.JMenuItem();
         dataMenu = new javax.swing.JMenu();
+        exportMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         howToMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
@@ -182,6 +187,15 @@ public class MainForm extends javax.swing.JFrame {
         mainMenuBar.add(fileMenu);
 
         dataMenu.setText("Data");
+
+        exportMenuItem.setText("Export...");
+        exportMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportMenuItemActionPerformed(evt);
+            }
+        });
+        dataMenu.add(exportMenuItem);
+
         mainMenuBar.add(dataMenu);
 
         helpMenu.setText("Help");
@@ -242,6 +256,10 @@ public class MainForm extends javax.swing.JFrame {
         HowToForm.setSize(new Dimension(600, 400));
         HowToForm.setTitle("How to Use the GCMS");
         HowToForm.add(HowToPanel);
+        
+        fileChooser = new JFileChooser();
+        fileChooser.setApproveButtonText("Export...");
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         
         database = new Database();
     } // end initFields
@@ -335,6 +353,23 @@ public class MainForm extends javax.swing.JFrame {
     private void howToMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_howToMenuItemActionPerformed
         HowToForm.setVisible(true);
     }//GEN-LAST:event_howToMenuItemActionPerformed
+
+    private void exportMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportMenuItemActionPerformed
+        int returnValue = fileChooser.showSaveDialog(this);
+        
+        // if the user confirms the export operation
+        // move the database file to the specified folder
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            try {
+                File srcFile = database.getWorkingFile();
+                File destDir = fileChooser.getSelectedFile();
+                FileUtils.moveFileToDirectory(srcFile, destDir, true);
+            } catch (IOException ex) {
+                JOptionPane.showConfirmDialog(null, MOVE_ERROR_MSG,
+                    "Dialog", JOptionPane.ERROR_MESSAGE);
+            } // end try-catch
+        } // end if-else
+    }//GEN-LAST:event_exportMenuItemActionPerformed
     
     /**
      * @param args the command line arguments
@@ -377,6 +412,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenu dataMenu;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JMenuItem exitMenuItem;
+    private javax.swing.JMenuItem exportMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JScrollPane gcmsScrollPane;
     private javax.swing.JTable gcmsTable;
@@ -399,9 +435,12 @@ public class MainForm extends javax.swing.JFrame {
         "Are you sure you want to delete the selected record(s)?";
     private static final String UPDATE_CONFIRM_MSG =
         "Are you sure you want to update the selected record(s)?";
+    private static final String MOVE_ERROR_MSG =
+        "Could not save the database file to the specified folder.";
     
     private JFrame AboutForm, HowToForm;
     private JPanel AboutPanel, HowToPanel;
+    private JFileChooser fileChooser;
     
     private Database database;
     // End of additional variables declaration
