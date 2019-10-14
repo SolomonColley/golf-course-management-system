@@ -363,7 +363,7 @@ public class MainForm extends javax.swing.JFrame {
             try {
                 File srcFile = database.getWorkingFile();
                 File destDir = fileChooser.getSelectedFile();
-                FileUtils.moveFileToDirectory(srcFile, destDir, true);
+                FileUtils.copyFileToDirectory(srcFile, destDir, true);
             } catch (IOException ex) {
                 JOptionPane.showConfirmDialog(null, MOVE_ERROR_MSG,
                     "Dialog", JOptionPane.ERROR_MESSAGE);
