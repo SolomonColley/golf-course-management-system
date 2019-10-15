@@ -76,7 +76,7 @@ public class Database {
      * Gets the working database file.
      * @return the working database file
      */
-    public File getWorkingFile() {
+    public File getWorkingDatabaseFile() {
         return new File(PATH_TO_WORKING_DB);
     } // end getFile
 } // end Database

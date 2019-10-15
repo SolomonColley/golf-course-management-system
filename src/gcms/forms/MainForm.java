@@ -34,7 +34,6 @@ import org.apache.commons.io.FileUtils;
  * @version 1.0
  */
 public class MainForm extends javax.swing.JFrame {
-    
     /**
      * Creates new form MainForm
      */
@@ -241,8 +240,9 @@ public class MainForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     /**
-     * Initializes all the JFrames (forms) utilized by the GCMS. JPanels stored
-     * in separate files are added to their respective forms.
+     * Initializes all the JFrames (forms) and other fields utilized by the
+     * GCMS. JPanels stored in separate files are added to their respective
+     * forms.
      */
     private void initFields() {
         AboutForm = new JFrame();
@@ -263,16 +263,6 @@ public class MainForm extends javax.swing.JFrame {
         
         database = new Database();
     } // end initFields
-    
-    /**
-     * Checks to see if the GCMS database exists in its working directory
-     * 'data'. If it does not exist, then an empty backup of the database
-     * is copied to the 'data' working directory.
-     */
-    private void checkDatabase() {
-        if (database.exists() == false)
-            database.copyBackupDatabase(); // end if-else
-    } // end checkDatabase
     
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         System.exit(0);
@@ -355,13 +345,15 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_howToMenuItemActionPerformed
 
     private void exportMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportMenuItemActionPerformed
+        checkDatabase();
+        
         int returnValue = fileChooser.showSaveDialog(this);
         
         // if the user confirms the export operation
         // move the database file to the specified folder
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             try {
-                File srcFile = database.getWorkingFile();
+                File srcFile = database.getWorkingDatabaseFile();
                 File destDir = fileChooser.getSelectedFile();
                 FileUtils.copyFileToDirectory(srcFile, destDir, true);
             } catch (IOException ex) {
@@ -370,6 +362,16 @@ public class MainForm extends javax.swing.JFrame {
             } // end try-catch
         } // end if-else
     }//GEN-LAST:event_exportMenuItemActionPerformed
+    
+    /**
+     * Checks to see if the GCMS database exists in its working directory
+     * 'data'. If it does not exist, then an empty backup of the database
+     * is copied to the 'data' working directory.
+     */
+    private void checkDatabase() {
+        if (database.exists() == false)
+            database.copyBackupDatabase(); // end if-else
+    } // end checkDatabase
     
     /**
      * @param args the command line arguments

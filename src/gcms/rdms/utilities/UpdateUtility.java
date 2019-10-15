@@ -52,12 +52,12 @@ public class UpdateUtility {
      * Operation UPDATE EmplSchedule of the GCMS's CRUD design. Connects to the
      * internal database, selects the EmplSchedule table, and updates the specified
      * rows into the database table.
-     * @param formTable the form's table with selected records to be inserted
+     * @param jTable the form's table with selected records to be inserted
      */
-    public static void updateEmplSchedule(JTable formTable) {
-        DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
-        int selectedRowCount = formTable.getSelectedRowCount();
-        int[] selectedRowIndices = formTable.getSelectedRows();
+    public static void updateEmplSchedule(JTable jTable) {
+        DefaultTableModel tableModel = (DefaultTableModel) jTable.getModel();
+        int selectedRowCount = jTable.getSelectedRowCount();
+        int[] selectedRowIndices = jTable.getSelectedRows();
         int dayValue, emplID;
         String jobValue;
         String sql = "UPDATE EmplSchedule SET Job = ?, EmplID = ? WHERE Day = ?";
@@ -94,12 +94,12 @@ public class UpdateUtility {
      * Operation UPDATE Employees of the GCMS's CRUD design. Connects to the
      * internal database, selects the Employees table, and updates the specified
      * rows into the database table.
-     * @param formTable the form's table with selected records to be inserted
+     * @param jTable the form's table with selected records to be inserted
      */
-    public static void updateEmployees(JTable formTable) {
-        DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
-        int selectedRowCount = formTable.getSelectedRowCount();
-        int[] selectedRowIndices = formTable.getSelectedRows();
+    public static void updateEmployees(JTable jTable) {
+        DefaultTableModel tableModel = (DefaultTableModel) jTable.getModel();
+        int selectedRowCount = jTable.getSelectedRowCount();
+        int[] selectedRowIndices = jTable.getSelectedRows();
         int empIDValue;
         String lNameValue, fNameValue, streetValue, cityValue, stateValue, emailValue, phoneValue;
         int zipValue;
@@ -153,9 +153,9 @@ public class UpdateUtility {
      * Operation UPDATE JobList of the GCMS's CRUD design. Connects to the
      * internal database, selects the JobList table, and updates the specified
      * rows into the database table.
-     * @param formTable the form's table with selected records to be inserted
+     * @param jTable the form's table with selected records to be inserted
      */
-    public static void updateJobList(JTable formTable) {
+    public static void updateJobList(JTable jTable) {
         // cannot update a table of key values
         JOptionPane.showMessageDialog(new JFrame(), UPDATE_ERROR_MSG,
             "Dialog", JOptionPane.ERROR_MESSAGE);
@@ -223,12 +223,12 @@ public class UpdateUtility {
      * Operation UPDATE Purchase of the GCMS's CRUD design. Connects to the
      * internal database, selects the Purchase table, and updates the specified
      * rows into the database table.
-     * @param formTable the form's table with selected records to be inserted
+     * @param jTable the form's table with selected records to be inserted
      */
-    public static void updatePurchase(JTable formTable) {
-        DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
-        int selectedRowCount = formTable.getSelectedRowCount();
-        int[] selectedRowIndices = formTable.getSelectedRows();
+    public static void updatePurchase(JTable jTable) {
+        DefaultTableModel tableModel = (DefaultTableModel) jTable.getModel();
+        int selectedRowCount = jTable.getSelectedRowCount();
+        int[] selectedRowIndices = jTable.getSelectedRows();
         int transNumValue, dayValue, memIDValue;
         String lNameValue, fNameValue;
         double totalAmountValue;
@@ -273,12 +273,12 @@ public class UpdateUtility {
      * Operation UPDATE PurchaseLine of the GCMS's CRUD design. Connects to the
      * internal database, selects the PurchaseLine table, and updates the specified
      * rows into the database table.
-     * @param formTable the form's table with selected records to be inserted
+     * @param jTable the form's table with selected records to be inserted
      */
-    public static void updatePurchaseLine(JTable formTable) {
-        DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
-        int selectedRowCount = formTable.getSelectedRowCount();
-        int[] selectedRowIndices = formTable.getSelectedRows();
+    public static void updatePurchaseLine(JTable jTable) {
+        DefaultTableModel tableModel = (DefaultTableModel) jTable.getModel();
+        int selectedRowCount = jTable.getSelectedRowCount();
+        int[] selectedRowIndices = jTable.getSelectedRows();
         int transNumValue, purchLineNumValue;
         String itemValue;
         int quantityValue;
@@ -317,12 +317,12 @@ public class UpdateUtility {
      * Operation UPDATE Rates of the GCMS's CRUD design. Connects to the
      * internal database, selects the Rates table, and updates the specified
      * rows into the database table.
-     * @param formTable the form's table with selected records to be inserted
+     * @param jTable the form's table with selected records to be inserted
      */
-    public static void updateRates(JTable formTable) {
-        DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
-        int selectedRowCount = formTable.getSelectedRowCount();
-        int[] selectedRowIndices = formTable.getSelectedRows();
+    public static void updateRates(JTable jTable) {
+        DefaultTableModel tableModel = (DefaultTableModel) jTable.getModel();
+        int selectedRowCount = jTable.getSelectedRowCount();
+        int[] selectedRowIndices = jTable.getSelectedRows();
         String itemValue;
         double priceValue;
         String sql = "UPDATE Rates SET Price = ? WHERE Item = ?";
@@ -357,12 +357,12 @@ public class UpdateUtility {
      * Operation UPDATE TeeSchedule of the GCMS's CRUD design. Connects to the
      * internal database, selects the TeeSchedule table, and updates the specified
      * rows into the database table.
-     * @param formTable the form's table with selected records to be inserted
+     * @param jTable the form's table with selected records to be inserted
      */
-    public static void updateTeeSchedule(JTable formTable) {
-        DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
-        int selectedRowCount = formTable.getSelectedRowCount();
-        int[] selectedRowIndices = formTable.getSelectedRows();
+    public static void updateTeeSchedule(JTable jTable) {
+        DefaultTableModel tableModel = (DefaultTableModel) jTable.getModel();
+        int selectedRowCount = jTable.getSelectedRowCount();
+        int[] selectedRowIndices = jTable.getSelectedRows();
         int dayValue, timeValue, memIDValue;
         String lNameValue, fNameValue;
         String sql = "UPDATE TeeSchedule SET Time = ?, MemberID = ?, LName = ?, FName = ? WHERE Day = ?";
@@ -404,9 +404,9 @@ public class UpdateUtility {
      * Operation UPDATE TeeTimes of the GCMS's CRUD design. Connects to the
      * internal database, selects the TeeTimes table, and updates the specified
      * rows into the database table.
-     * @param formTable the form's table with selected records to be inserted
+     * @param jTable the form's table with selected records to be inserted
      */
-    public static void updateTeeTimes(JTable formTable) {
+    public static void updateTeeTimes(JTable jTable) {
         // cannot update a table of key values
         JOptionPane.showMessageDialog(new JFrame(), UPDATE_ERROR_MSG,
             "Dialog", JOptionPane.ERROR_MESSAGE);

@@ -44,39 +44,39 @@ public class RDMS {
      * database, selects the user-specified table, and inserts the specified
      * rows into the database table.
      * @param dbTable the user-selected database table
-     * @param formTable the form's table with selected records to be inserted
+     * @param jTable the form's table with selected records to be inserted
      */
-    public static void create(String dbTable, JTable formTable) {        
+    public static void create(String dbTable, JTable jTable) {        
         switch (dbTable) {
             case "Calendar":
-                InsertUtility.insertToCalendar(formTable);
+                InsertUtility.insertToCalendar(jTable);
                 break;
             case "EmplSchedule":
-                InsertUtility.insertToEmplSchedule(formTable);
+                InsertUtility.insertToEmplSchedule(jTable);
                 break;
             case "Employees":
-                InsertUtility.insertToEmployees(formTable);
+                InsertUtility.insertToEmployees(jTable);
                 break;
             case "JobList":
-                InsertUtility.insertToJobList(formTable);
+                InsertUtility.insertToJobList(jTable);
                 break;
             case "Members":
-                InsertUtility.insertToMembers(formTable);
+                InsertUtility.insertToMembers(jTable);
                 break;
             case "Purchase":
-                InsertUtility.insertToPurchase(formTable);
+                InsertUtility.insertToPurchase(jTable);
                 break;
             case "PurchaseLine":
-                InsertUtility.insertToPurchaseLine(formTable);
+                InsertUtility.insertToPurchaseLine(jTable);
                 break;
             case "Rates":
-                InsertUtility.insertToRates(formTable);
+                InsertUtility.insertToRates(jTable);
                 break;
             case "TeeSchedule":
-                InsertUtility.insertToTeeSchedule(formTable);
+                InsertUtility.insertToTeeSchedule(jTable);
                 break;
             case "TeeTimes":
-                InsertUtility.insertToTeeTimes(formTable);
+                InsertUtility.insertToTeeTimes(jTable);
                 break;
             default:
                 break;
@@ -89,9 +89,9 @@ public class RDMS {
      * information into the destination JTable. The JTable will reflect the
      * corresponding database table.
      * @param dbTable the user-selected database table (read from)
-     * @param formTable the form's table to be populated with records (read to)
+     * @param jTable the form's table to be populated with records (read to)
      */
-    public static void read(Object dbTable, JTable formTable) {
+    public static void read(Object dbTable, JTable jTable) {
         try {
             Connection.connect(CONNECTION_STR);
             try (Statement statement = Connection.getConnection().createStatement();
@@ -102,7 +102,7 @@ public class RDMS {
                 int columnCount = resultSetMetaData.getColumnCount();
                 
                 // table model helps with changing the column and row model
-                DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
+                DefaultTableModel tableModel = (DefaultTableModel) jTable.getModel();
                 
                 // reset the table's column count
                 tableModel.setColumnCount(0);
@@ -138,39 +138,39 @@ public class RDMS {
      * database, selects the user-specified table, and updates the specified
      * rows from the table.
      * @param dbTable the user-selected database table
-     * @param formTable the form's table with selected records to be deleted
+     * @param jTable the form's table with selected records to be deleted
      */
-    public static void update(String dbTable, JTable formTable) {
+    public static void update(String dbTable, JTable jTable) {
         switch (dbTable) {
             case "Calendar":
-                UpdateUtility.updateCalendar(formTable);
+                UpdateUtility.updateCalendar(jTable);
                 break;
             case "EmplSchedule":
-                UpdateUtility.updateEmplSchedule(formTable);
+                UpdateUtility.updateEmplSchedule(jTable);
                 break;
             case "Employees":
-                UpdateUtility.updateEmployees(formTable);
+                UpdateUtility.updateEmployees(jTable);
                 break;
             case "JobList":
-                UpdateUtility.updateJobList(formTable);
+                UpdateUtility.updateJobList(jTable);
                 break;
             case "Members":
-                UpdateUtility.updateMembers(formTable);
+                UpdateUtility.updateMembers(jTable);
                 break;
             case "Purchase":
-                UpdateUtility.updatePurchase(formTable);
+                UpdateUtility.updatePurchase(jTable);
                 break;
             case "PurchaseLine":
-                UpdateUtility.updatePurchaseLine(formTable);
+                UpdateUtility.updatePurchaseLine(jTable);
                 break;
             case "Rates":
-                UpdateUtility.updateRates(formTable);
+                UpdateUtility.updateRates(jTable);
                 break;
             case "TeeSchedule":
-                UpdateUtility.updateTeeSchedule(formTable);
+                UpdateUtility.updateTeeSchedule(jTable);
                 break;
             case "TeeTimes":
-                UpdateUtility.updateTeeTimes(formTable);
+                UpdateUtility.updateTeeTimes(jTable);
                 break;
             default:
                 break;
@@ -182,13 +182,13 @@ public class RDMS {
      * database, selects the user-specified table, and deletes the specified
      * rows from the table.
      * @param dbTable the user-selected database table
-     * @param formTable the form's table with selected records to be deleted
+     * @param jTable the form's table with selected records to be deleted
      */
-    public static void delete(Object dbTable, JTable formTable) {
-        DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
-        int selectedRowCount = formTable.getSelectedRowCount();
-        int[] selectedRowIndices = formTable.getSelectedRows();
-        String colIDName = formTable.getColumnName(0);
+    public static void delete(Object dbTable, JTable jTable) {
+        DefaultTableModel tableModel = (DefaultTableModel) jTable.getModel();
+        int selectedRowCount = jTable.getSelectedRowCount();
+        int[] selectedRowIndices = jTable.getSelectedRows();
+        String colIDName = jTable.getColumnName(0);
         String sql;
         Object[] selectedRowIDs = new Object[selectedRowCount];
         

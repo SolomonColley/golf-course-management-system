@@ -21,7 +21,6 @@ package gcms.forms.panels;
  * @version 1.0
  */
 public class AboutPanel extends javax.swing.JPanel {
-
     /**
      * Creates new form AboutPanel
      */
@@ -80,4 +79,4 @@ public class AboutPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane aboutScrollPane;
     private javax.swing.JTextArea aboutTextArea;
     // End of variables declaration//GEN-END:variables
-}
+} // end AboutPanel

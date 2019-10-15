@@ -40,12 +40,12 @@ public class InsertUtility {
      * Operation INSERT Calendar of the GCMS's CRUD design. Connects to the
      * internal database, selects the Calendar table, and inserts the specified
      * rows into the database table.
-     * @param formTable the form's table with selected records to be inserted
+     * @param jTable the form's table with selected records to be inserted
      */
-    public static void insertToCalendar(JTable formTable) {
-        DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
-        int selectedRowCount = formTable.getSelectedRowCount();
-        int[] selectedRowIndices = formTable.getSelectedRows();
+    public static void insertToCalendar(JTable jTable) {
+        DefaultTableModel tableModel = (DefaultTableModel) jTable.getModel();
+        int selectedRowCount = jTable.getSelectedRowCount();
+        int[] selectedRowIndices = jTable.getSelectedRows();
         int dayValue;
         String sql = "INSERT INTO Calendar(Day) VALUES(?)";
         
@@ -77,12 +77,12 @@ public class InsertUtility {
      * Operation INSERT EmplSchedule of the GCMS's CRUD design. Connects to the
      * internal database, selects the EmplSchedule table, and updates the specified
      * rows into the database table.
-     * @param formTable the form's table with selected records to be inserted
+     * @param jTable the form's table with selected records to be inserted
      */
-    public static void insertToEmplSchedule(JTable formTable) {
-        DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
-        int selectedRowCount = formTable.getSelectedRowCount();
-        int[] selectedRowIndices = formTable.getSelectedRows();
+    public static void insertToEmplSchedule(JTable jTable) {
+        DefaultTableModel tableModel = (DefaultTableModel) jTable.getModel();
+        int selectedRowCount = jTable.getSelectedRowCount();
+        int[] selectedRowIndices = jTable.getSelectedRows();
         int dayValue, emplIDValue;
         String jobValue;
         String sql = "INSERT INTO EmplSchedule(Day, Job, EmplID) VALUES(?, ?, ?)";
@@ -119,12 +119,12 @@ public class InsertUtility {
      * Operation INSERT Employees of the GCMS's CRUD design. Connects to the
      * internal database, selects the Employees table, and inserts the specified
      * rows into the database table.
-     * @param formTable the form's table with selected records to be inserted
+     * @param jTable the form's table with selected records to be inserted
      */
-    public static void insertToEmployees(JTable formTable) {
-        DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
-        int selectedRowCount = formTable.getSelectedRowCount();
-        int[] selectedRowIndices = formTable.getSelectedRows();
+    public static void insertToEmployees(JTable jTable) {
+        DefaultTableModel tableModel = (DefaultTableModel) jTable.getModel();
+        int selectedRowCount = jTable.getSelectedRowCount();
+        int[] selectedRowIndices = jTable.getSelectedRows();
         int empIDValue;
         String lNameValue, fNameValue, streetValue, cityValue, stateValue, emailValue, phoneValue;
         int zipValue;
@@ -178,12 +178,12 @@ public class InsertUtility {
      * Operation INSERT JobList of the GCMS's CRUD design. Connects to the
      * internal database, selects the JobList table, and inserts the specified
      * rows into the database table.
-     * @param formTable the form's table with selected records to be inserted
+     * @param jTable the form's table with selected records to be inserted
      */
-    public static void insertToJobList(JTable formTable) {
-        DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
-        int selectedRowCount = formTable.getSelectedRowCount();
-        int[] selectedRowIndices = formTable.getSelectedRows();
+    public static void insertToJobList(JTable jTable) {
+        DefaultTableModel tableModel = (DefaultTableModel) jTable.getModel();
+        int selectedRowCount = jTable.getSelectedRowCount();
+        int[] selectedRowIndices = jTable.getSelectedRows();
         String jobValue;
         String sql = "INSERT INTO JobList(Job) VALUES(?)";
         
@@ -212,12 +212,12 @@ public class InsertUtility {
      * Operation INSERT Members of the GCMS's CRUD design. Connects to the
      * internal database, selects the Members table, and inserts the specified
      * rows into the database table.
-     * @param formTable the form's table with selected records to be inserted
+     * @param jTable the form's table with selected records to be inserted
      */
-    public static void insertToMembers(JTable formTable) {
-        DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
-        int selectedRowCount = formTable.getSelectedRowCount();
-        int[] selectedRowIndices = formTable.getSelectedRows();
+    public static void insertToMembers(JTable jTable) {
+        DefaultTableModel tableModel = (DefaultTableModel) jTable.getModel();
+        int selectedRowCount = jTable.getSelectedRowCount();
+        int[] selectedRowIndices = jTable.getSelectedRows();
         int memIDValue;
         String lNameValue, fNameValue, streetValue, cityValue, stateValue, emailValue, phoneValue;
         int zipValue, expDateValue;
@@ -270,12 +270,12 @@ public class InsertUtility {
      * Operation INSERT Purchase of the GCMS's CRUD design. Connects to the
      * internal database, selects the Purchase table, and inserts the specified
      * rows into the database table.
-     * @param formTable the form's table with selected records to be inserted
+     * @param jTable the form's table with selected records to be inserted
      */
-    public static void insertToPurchase(JTable formTable) {
-        DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
-        int selectedRowCount = formTable.getSelectedRowCount();
-        int[] selectedRowIndices = formTable.getSelectedRows();
+    public static void insertToPurchase(JTable jTable) {
+        DefaultTableModel tableModel = (DefaultTableModel) jTable.getModel();
+        int selectedRowCount = jTable.getSelectedRowCount();
+        int[] selectedRowIndices = jTable.getSelectedRows();
         int transNumValue, dayValue, memIDValue;
         String lNameValue, fNameValue;
         double totalAmountValue;
@@ -320,12 +320,12 @@ public class InsertUtility {
      * Operation INSERT PurchaseLine of the GCMS's CRUD design. Connects to the
      * internal database, selects the PurchaseLine table, and inserts the specified
      * rows into the database table.
-     * @param formTable the form's table with selected records to be inserted
+     * @param jTable the form's table with selected records to be inserted
      */
-    public static void insertToPurchaseLine(JTable formTable) {
-        DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
-        int selectedRowCount = formTable.getSelectedRowCount();
-        int[] selectedRowIndices = formTable.getSelectedRows();
+    public static void insertToPurchaseLine(JTable jTable) {
+        DefaultTableModel tableModel = (DefaultTableModel) jTable.getModel();
+        int selectedRowCount = jTable.getSelectedRowCount();
+        int[] selectedRowIndices = jTable.getSelectedRows();
         int transNumValue, purchLineNumValue;
         String itemValue;
         int quantityValue;
@@ -366,12 +366,12 @@ public class InsertUtility {
      * Operation UPDATE Rates of the GCMS's CRUD design. Connects to the
      * internal database, selects the Rates table, and updates the specified
      * rows into the database table.
-     * @param formTable the form's table with selected records to be inserted
+     * @param jTable the form's table with selected records to be inserted
      */
-    public static void insertToRates(JTable formTable) {
-        DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
-        int selectedRowCount = formTable.getSelectedRowCount();
-        int[] selectedRowIndices = formTable.getSelectedRows();
+    public static void insertToRates(JTable jTable) {
+        DefaultTableModel tableModel = (DefaultTableModel) jTable.getModel();
+        int selectedRowCount = jTable.getSelectedRowCount();
+        int[] selectedRowIndices = jTable.getSelectedRows();
         String itemValue;
         double priceValue;
         String sql = "INSERT INTO Rates(Item, Price) VALUES(?, ?)";
@@ -406,12 +406,12 @@ public class InsertUtility {
      * Operation INSERT TeeSchedule of the GCMS's CRUD design. Connects to the
      * internal database, selects the TeeSchedule table, and inserts the specified
      * rows into the database table.
-     * @param formTable the form's table with selected records to be inserted
+     * @param jTable the form's table with selected records to be inserted
      */
-    public static void insertToTeeSchedule(JTable formTable) {
-        DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
-        int selectedRowCount = formTable.getSelectedRowCount();
-        int[] selectedRowIndices = formTable.getSelectedRows();
+    public static void insertToTeeSchedule(JTable jTable) {
+        DefaultTableModel tableModel = (DefaultTableModel) jTable.getModel();
+        int selectedRowCount = jTable.getSelectedRowCount();
+        int[] selectedRowIndices = jTable.getSelectedRows();
         int dayValue, timeValue, memIDValue;
         String lNameValue, fNameValue;
         String sql = "INSERT INTO TeeSchedule(Day, Time, MemberID, LName, FName) VALUES(?, ?, ?, ?, ?)";
@@ -453,12 +453,12 @@ public class InsertUtility {
      * Operation INSERT TeeTimes of the GCMS's CRUD design. Connects to the
      * internal database, selects the TeeTimes table, and inserts the specified
      * rows into the database table.
-     * @param formTable the form's table with selected records to be inserted
+     * @param jTable the form's table with selected records to be inserted
      */
-    public static void insertToTeeTimes(JTable formTable) {
-        DefaultTableModel tableModel = (DefaultTableModel) formTable.getModel();
-        int selectedRowCount = formTable.getSelectedRowCount();
-        int[] selectedRowIndices = formTable.getSelectedRows();
+    public static void insertToTeeTimes(JTable jTable) {
+        DefaultTableModel tableModel = (DefaultTableModel) jTable.getModel();
+        int selectedRowCount = jTable.getSelectedRowCount();
+        int[] selectedRowIndices = jTable.getSelectedRows();
         int timeValue;
         String sql = "INSERT INTO TeeTimes(Time) VALUES(?)";
         
